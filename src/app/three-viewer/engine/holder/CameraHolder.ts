@@ -8,7 +8,7 @@ export class CameraHolder implements IResizable {
 
   constructor(private readonly scene: Scene, initialSize: WindowSize) {
     this.instance = new PerspectiveCamera(
-      75,
+      35,
       initialSize.width / initialSize.height,
       0.1,
       100
