@@ -3,10 +3,20 @@ import { ISize } from './ISize';
 import { Observable } from 'rxjs';
 import { IListenable } from '../../interface/IListenable';
 
-export class SizeHandler implements IListenable<ISize> {
+/**
+ * Handler for the size of the screen (viewport)
+ */
+export class ScreenSizeHandler implements IListenable<ISize> {
 
+  /**
+   * Emits on the stream the new size on resizing event triggered by the browser
+   * @private
+   */
   private readonly eventEmitter = new EventEmitter<ISize>();
 
+  /**
+   * Constructor
+   */
   constructor() {
     window.addEventListener('resize', () => {
       this.eventEmitter.emit({
@@ -17,18 +27,30 @@ export class SizeHandler implements IListenable<ISize> {
     });
   }
 
+  /**
+   * Returns the current width of the viewport.
+   */
   getWidth(): number {
     return window.innerWidth;
   }
 
+  /**
+   * Returns the current height of the viewport.
+   */
   getHeight(): number {
     return window.innerHeight;
   }
 
+  /**
+   * Get the current pixel ratio to apply. Can be either 1 or 2 (above 2 would be overkill)
+   */
   getPixelRatio(): number {
     return Math.min(window.devicePixelRatio, 2);
   }
 
+  /**
+   * Get an information bundle about the viewport size
+   */
   getSize(): ISize {
     return {
       width: this.getWidth(),
@@ -37,6 +59,10 @@ export class SizeHandler implements IListenable<ISize> {
     };
   }
 
+  /**
+   * Exposes an observable for subscribers that needs to be informed on the size changes.
+   * @returns an observable that emits the new size and the new pixel ratio in the stream.
+   */
   listen(): Observable<ISize> {
     return this.eventEmitter.asObservable();
   }

@@ -8,7 +8,7 @@ import { ControlsHolder } from './holder/ControlsHolder';
 import { CameraHolder } from './holder/CameraHolder';
 import { World } from './world/World';
 import { TimeHandler } from './handler/time/TimeHandler';
-import { SizeHandler } from './handler/size/SizeHandler';
+import { ScreenSizeHandler } from './handler/size/ScreenSizeHandler';
 import { Subscription } from 'rxjs';
 import { DebugGUI } from './debug/DebugGUI';
 
@@ -36,7 +36,7 @@ export class Engine implements IResizable, IUpdatable, IDestroyable {
    * Engine uses it to resize the elements of the 3D experience when the resize event occurs.
    * @private
    */
-  private readonly sizeHandler: SizeHandler = new SizeHandler();
+  private readonly sizeHandler: ScreenSizeHandler = new ScreenSizeHandler();
 
   /**
    * ThreeJS scene

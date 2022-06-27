@@ -75,9 +75,9 @@ Holder for the OrbitControls chosen for the template. Can be switched to other t
 
 A handler takes care of the "Util" part of the viewer.
 
-### SizeHandler
+### ScreenSizeHandler
 
-Util to handle the size.
+Util to handle the screen size.
 Updates on viewport resizing.
 It emits an event that contains the new size and pixel ratio on resize via an Observable.
 
