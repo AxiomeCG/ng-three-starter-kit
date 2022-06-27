@@ -29,7 +29,7 @@ class AnimationHolder {
 
   /**
    * Plays the animation corresponding to the name.
-   * @param name Name of the animation action to play. Should exists in the list of available actions.
+   * @param name Name of the animation action to play. Should exist in the list of available actions.
    */
   play(name: string): void {
     console.log('Play', name);
