@@ -4,7 +4,8 @@
 ![Threejs](https://img.shields.io/badge/threejs-black?style=for-the-badge&logo=three.js&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 
-
+ [![Documentation](https://exomus.github.io/docs/ng-three-starter-kit/v0.1.0/images/coverage-badge-documentation.svg)](https://exomus.github.io/docs/ng-three-starter-kit/v0.1.0/)
+ 
 [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-black.svg)](https://sonarcloud.io/summary/new_code?id=Exomus_ng-three-starter-kit)
 
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Exomus_ng-three-starter-kit&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=Exomus_ng-three-starter-kit)
@@ -16,6 +17,10 @@
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=Exomus_ng-three-starter-kit&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=Exomus_ng-three-starter-kit)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=Exomus_ng-three-starter-kit&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=Exomus_ng-three-starter-kit)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Exomus_ng-three-starter-kit&metric=bugs)](https://sonarcloud.io/summary/new_code?id=Exomus_ng-three-starter-kit)
+
+
+
+
 
 # Stack
 
