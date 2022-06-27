@@ -2,8 +2,15 @@ import { EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IListenable } from '../../interface/IListenable';
 
+/**
+ * Handler for the time of the 3D experience. It notifies subscribers on each frame.
+ */
 export class TimeHandler implements IListenable<void> {
 
+  /**
+   * Emits an empty event on each frame to inform the subscribers.
+   * @private
+   */
   private readonly eventEmitter = new EventEmitter<void>();
 
   private start: number = Date.now();
