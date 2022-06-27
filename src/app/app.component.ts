@@ -9,5 +9,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  /**
+   * Title of the application
+   */
   title = 'ng-three-starter-kit';
 }
