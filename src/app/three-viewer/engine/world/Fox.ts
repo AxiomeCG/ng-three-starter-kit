@@ -68,7 +68,7 @@ export class Fox implements IUpdatable, IDestroyable {
    * Debug tool to tweak the Fox and change its animations
    * @private
    */
-  private debugFolder: GUI | undefined;
+  private readonly debugFolder: GUI | undefined;
 
   /**
    * Constructor
