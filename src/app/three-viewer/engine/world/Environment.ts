@@ -26,7 +26,6 @@ interface EnvironmentMapHolder {
    * Cube texture of the environment
    */
   texture: Texture;
-
   /**
    * Updates the scene to apply the envMap to each material of the scene that supports environment maps.
    */
