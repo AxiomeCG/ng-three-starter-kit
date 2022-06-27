@@ -11,6 +11,7 @@ export class ScreenSizeHandlerService {
 
   /**
    * Constructor
+   * Listen to the resize outside of Angular to execute the Engine's consumer to avoid ChangeDetection triggers
    */
   constructor(private readonly ngZone: NgZone) {
     this.ngZone.runOutsideAngular(() => {
