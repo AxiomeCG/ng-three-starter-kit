@@ -1,4 +1,4 @@
-import { IExperienceTime } from '../handler/time/IExperienceTime';
+import { IExperienceTime } from '../service/time/IExperienceTime';
 
 /**
  * Contract that symbolizes that the class needs updates at each frame, and exposes the method to do so.

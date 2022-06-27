@@ -1,7 +1,7 @@
 import { WebGLRenderer } from 'three/src/renderers/WebGLRenderer';
 import { IResizable } from '../interface/IResizable';
 import { PCFShadowMap, ReinhardToneMapping, sRGBEncoding } from 'three';
-import { ISize } from '../handler/size/ISize';
+import { ISize } from '../service/size/ISize';
 import { IUpdatable } from '../interface/IUpdatable';
 import { Scene } from 'three/src/scenes/Scene';
 import { Camera } from 'three/src/cameras/Camera';

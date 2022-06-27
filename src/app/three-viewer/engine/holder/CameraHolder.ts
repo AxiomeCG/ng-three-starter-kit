@@ -1,5 +1,5 @@
 import { IResizable } from '../interface/IResizable';
-import { ISize } from '../handler/size/ISize';
+import { ISize } from '../service/size/ISize';
 import { PerspectiveCamera } from 'three';
 import { Scene } from 'three/src/scenes/Scene';
 

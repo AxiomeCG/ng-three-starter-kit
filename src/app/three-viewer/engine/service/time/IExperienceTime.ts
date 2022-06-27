@@ -3,7 +3,7 @@
  */
 export interface IExperienceTime {
   /**
-   * Start time of the application (at the instantiation of the TimeHandler).
+   * Start time of the application (at the instantiation of the experience).
    * Used to calculate the elapsed time from the start of the experience.
    */
   start: number;

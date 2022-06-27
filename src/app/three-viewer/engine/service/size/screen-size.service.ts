@@ -2,13 +2,12 @@ import { Injectable, NgZone } from '@angular/core';
 import { ISize } from './ISize';
 
 /**
- * Handler for the size of the screen (viewport)
+ * Service that handles the size of the screen (viewport) and it listens on the resize events outside of Angular
  */
 @Injectable({
   providedIn: 'root'
 })
-export class ScreenSizeHandlerService {
-
+export class ScreenSizeService {
   /**
    * Constructor
    * Listen to the resize outside of Angular to execute the Engine's consumer to avoid ChangeDetection triggers

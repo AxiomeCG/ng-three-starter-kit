@@ -1,30 +1,30 @@
 import { IUpdatable } from '../interface/IUpdatable';
-import { ResourceHandler } from '../handler/resource/ResourceHandler';
+import { ResourceLoader } from '../resource/ResourceLoader';
 import { Subscription } from 'rxjs';
 import { IDestroyable } from '../interface/IDestroyable';
-import { sourceList } from '../handler/resource/sources-list';
+import { sourceList } from '../resource/sources-list';
 import { Environment } from './Environment';
 import { DebugGUI } from '../debug/DebugGUI';
 import { Scene } from 'three';
 import { Fox } from './Fox';
 import { Floor } from './Floor';
-import { IExperienceTime } from '../handler/time/IExperienceTime';
+import { IExperienceTime } from '../service/time/IExperienceTime';
 
 /**
  * Holds all the 3D elements that are instantiated in the 3D world.
  */
 export class World implements IUpdatable, IDestroyable {
   /**
-   * Reference to the resource handler subscription that needs to be destroyed when the World instance is garbage
+   * Reference to the resource loader subscription that needs to be destroyed when the World instance is garbage
    * collected.
    * @private
    */
   private readonly subscription: Subscription;
   /**
-   * Resource handler that loads the sources described in the corresponding file.
+   * Resource loader that loads the sources described in the corresponding file.
    * @private
    */
-  private readonly resourceHandler = new ResourceHandler(sourceList);
+  private readonly resourceLoader = new ResourceLoader(sourceList);
 
   /**
    * Floor that is displayed in the 3D experience.
@@ -49,14 +49,14 @@ export class World implements IUpdatable, IDestroyable {
    */
   constructor(private readonly scene: Scene,
               private readonly debugGUI: DebugGUI) {
-    this.subscription = this.resourceHandler.listen()
+    this.subscription = this.resourceLoader.listen()
                             .subscribe(() => {
                               console.log('Resources are ready');
-                              this.floor = new Floor(scene, this.resourceHandler);
+                              this.floor = new Floor(scene, this.resourceLoader);
                               this.fox = new Fox(scene,
-                                this.resourceHandler,
+                                this.resourceLoader,
                                 debugGUI);
-                              this.environment = new Environment(scene, this.resourceHandler, debugGUI);
+                              this.environment = new Environment(scene, this.resourceLoader, debugGUI);
                             });
   }
 
@@ -76,7 +76,7 @@ export class World implements IUpdatable, IDestroyable {
   destroy(): void {
     this.subscription.unsubscribe();
 
-    this.resourceHandler.destroy();
+    this.resourceLoader.destroy();
 
     this.floor?.destroy();
     this.fox?.destroy();

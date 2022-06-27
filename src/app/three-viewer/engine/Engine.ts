@@ -2,13 +2,13 @@ import { IDestroyable } from './interface/IDestroyable';
 import { RendererHolder } from './holder/RendererHolder';
 import { IResizable } from './interface/IResizable';
 import { IUpdatable } from './interface/IUpdatable';
-import { ISize } from './handler/size/ISize';
+import { ISize } from './service/size/ISize';
 import { Mesh, Scene } from 'three';
 import { ControlsHolder } from './holder/ControlsHolder';
 import { CameraHolder } from './holder/CameraHolder';
 import { World } from './world/World';
 import { DebugGUI } from './debug/DebugGUI';
-import { IExperienceTime } from './handler/time/IExperienceTime';
+import { IExperienceTime } from './service/time/IExperienceTime';
 
 /**
  * Core element of the viewer.
@@ -112,7 +112,7 @@ export class Engine implements IResizable, IUpdatable, IDestroyable {
   }
 
   /**
-   * Destroys all the destroyable elements of the corresponding list, unsubscribe from handlers' observable and dispose
+   * Destroys all the destroyable elements of the corresponding list and disposes
    * from all the left elements of the scene.
    */
   destroy(): void {

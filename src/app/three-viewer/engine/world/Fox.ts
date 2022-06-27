@@ -1,4 +1,4 @@
-import { ResourceHandler } from '../handler/resource/ResourceHandler';
+import { ResourceLoader } from '../resource/ResourceLoader';
 import { AnimationMixer, Group, Mesh, Scene } from 'three';
 import { DebugGUI } from '../debug/DebugGUI';
 import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader';
@@ -6,7 +6,7 @@ import GUI from 'lil-gui';
 import { AnimationAction } from 'three/src/animation/AnimationAction';
 import { IUpdatable } from '../interface/IUpdatable';
 import { IDestroyable } from '../interface/IDestroyable';
-import { IExperienceTime } from '../handler/time/IExperienceTime';
+import { IExperienceTime } from '../service/time/IExperienceTime';
 
 /**
  * Bundle for the animation information
@@ -73,18 +73,18 @@ export class Fox implements IUpdatable, IDestroyable {
   /**
    * Constructor
    * @param scene Scene to add the fox
-   * @param resourceHandler Resource handler that loads the GLTF file of the fox
+   * @param resourceLoader Resource loader that has loaded the GLTF file of the fox
    * @param debugGUI Tool to tweak the fox animations
    */
   constructor(private readonly scene: Scene,
-              private readonly resourceHandler: ResourceHandler,
+              private readonly resourceLoader: ResourceLoader,
               private readonly debugGUI: DebugGUI) {
 
     if (this.debugGUI.ui) {
       this.debugFolder = this.debugGUI.ui.addFolder('fox');
     }
 
-    this.gltf = this.resourceHandler.items.get('foxModel') as GLTF;
+    this.gltf = this.resourceLoader.items.get('foxModel') as GLTF;
     this.modelGroup = this.gltf.scene;
 
     this.animationHolder = new AnimationHolder(

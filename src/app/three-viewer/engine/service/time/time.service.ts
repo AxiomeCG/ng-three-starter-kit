@@ -3,12 +3,12 @@ import { IExperienceTime } from './IExperienceTime';
 
 
 /**
- * Handler for the time of the 3D experience.
+ * Service that handles the time of the 3D experience and the main loop outside of Angular
  */
 @Injectable({
   providedIn: 'root'
 })
-export class TimeHandlerService {
+export class TimeService {
 
   /**
    * Bundle to keep information about the time of the experience.

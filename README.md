@@ -89,11 +89,8 @@ It executes the consumer callback of the engine while providing it the new size 
 Util to handle the common tick loop.
 It executes the consumer callback of the engine while providing it the time information of the current new frame.
 
-## Handlers
-
-A handler takes care of the "Util" part of the viewer.
-
-### ResourceHandler
+## Loader
+### ResourceLoader
 
 Util to handle GLTF models, textures, and cube textures.
 (It is extensible as you wish)
@@ -121,7 +118,7 @@ Mostly used for the handler to notify other objects via their EventEmitter.
 
 Contract that marks the class that implements it as resizable.
 Add your objects in your Engine "resizableList", this will be added to the callback that is called by the
-ScreenSizeHandlerService
+ScreenSizeService
 
 ### IUpdatable
 

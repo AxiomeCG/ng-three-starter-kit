@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TimeHandlerService } from './time-handler.service';
+import { ScreenSizeService } from './screen-size.service';
 
-describe('TimeHandlerService', () => {
-  let service: TimeHandlerService;
+describe('ScreenSizeService', () => {
+  let service: ScreenSizeService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(TimeHandlerService);
+    service = TestBed.inject(ScreenSizeService);
   });
 
   it('should be created', () => {
