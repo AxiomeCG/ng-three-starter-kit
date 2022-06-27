@@ -2,25 +2,51 @@ import { CircleGeometry, Mesh, MeshStandardMaterial, RepeatWrapping, sRGBEncodin
 import { Scene } from 'three/src/scenes/Scene';
 import { ResourceHandler } from '../handler/resource/ResourceHandler';
 
+/**
+ * Contains the 3D floor of the scene
+ */
 export class Floor {
-
+  /**
+   * ThreeJS geometry of the floor.
+   * @private
+   */
   private readonly geometry: CircleGeometry = new CircleGeometry(5, 64);
+  /**
+   * ThreeJS textures loaded to be applied on the floor.
+   * @private
+   */
   private readonly textures: { color: Texture, normal: Texture } = {
     color: this.resourceHandler.items.get('grassColorTexture') as Texture,
     normal: this.resourceHandler.items.get('grassNormalTexture') as Texture,
   };
+  /**
+   * ThreeJS Material used on the floor to apply the textures.
+   * @private
+   */
   private readonly material: MeshStandardMaterial = new MeshStandardMaterial({
     map: this.textures.color,
     normalMap: this.textures.normal
   });
+  /**
+   * ThreeJS mesh that holds the geometry and the material of the floor.
+   * @private
+   */
   private mesh: Mesh = new Mesh(this.geometry, this.material);
 
+  /**
+   * Constructor
+   * @param scene Scene to which is added the floor mesh
+   * @param resourceHandler Resource handler that loaded the textures to apply on the floor
+   */
   constructor(private readonly scene: Scene,
               private readonly resourceHandler: ResourceHandler) {
     this.configureTextures();
     this.configureMesh();
   }
 
+  /**
+   * Configures the color and map textures (encoding and tiling)
+   */
   configureTextures() {
     this.textures.color.encoding = sRGBEncoding;
     this.textures.color.repeat.set(1.5, 1.5);
@@ -32,6 +58,10 @@ export class Floor {
     this.textures.normal.wrapT = RepeatWrapping;
   }
 
+  /**
+   * Configure the floor to position it correctly in the scene.
+   * Activates the capacity of receiving shadows.
+   */
   configureMesh() {
     this.mesh.rotation.x = -Math.PI * 0.5;
     this.mesh.receiveShadow = true;
