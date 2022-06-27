@@ -28,14 +28,6 @@ export class TimeHandlerService {
   }
 
   /**
-   * Sets the consumer that will be used by the engine to determine its update behaviour based on the new time bundle
-   * @param consumer Callback that needs to be executed outside the NgZone to avoid heavy change detection processes.
-   */
-  setConsumer(consumer: (experienceTime: IExperienceTime) => void): void {
-    this.engineConsumer = consumer;
-  }
-
-  /**
    * Handles the time of the experience by emitting on each frame an event to forward updates.
    * Executed outside the NgZone to avoid heavy load and performance issues due to the Change Detection.
    */
@@ -58,6 +50,14 @@ export class TimeHandlerService {
    */
   getExperienceTime() {
     return { ...this.experienceTime };
+  }
+
+  /**
+   * Sets the consumer that will be used by the engine to determine its update behaviour based on the new time bundle
+   * @param consumer Callback that needs to be executed outside the NgZone to avoid heavy change detection processes.
+   */
+  setConsumer(consumer: (experienceTime: IExperienceTime) => void): void {
+    this.engineConsumer = consumer;
   }
 
   /**
