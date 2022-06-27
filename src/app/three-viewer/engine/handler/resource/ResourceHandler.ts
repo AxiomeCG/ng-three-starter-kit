@@ -66,24 +66,33 @@ export class ResourceHandler implements IDestroyable, IListenable<void> {
     for (const source of this.sourceList) {
       switch (source.type) {
         case SourceType.GLTF:
+          if (!source.path) {
+            throw new Error('Cannot load the GLTF model due to missing path property. Check the source file.');
+          }
           this.gltfLoader.load(
-            source.path!!,
+            source.path,
             (file) => {
               this.sourceLoaded(source, file);
             }
           );
           break;
         case SourceType.TEXTURE:
+          if (!source.path) {
+            throw new Error('Cannot load the Texture due to missing path property. Check the source file.');
+          }
           this.textureLoader.load(
-            source.path!!,
+            source.path,
             (file) => {
               this.sourceLoaded(source, file);
             }
           );
           break;
         case SourceType.CUBE_TEXTURE:
+          if (!source.pathList) {
+            throw new Error('Cannot load the CubeTexture due to missing pathlist property. Check the source file.');
+          }
           this.cubeTextureLoader.load(
-            source.pathList!!,
+            source.pathList,
             (file) => {
               this.sourceLoaded(source, file);
             }
@@ -128,7 +137,7 @@ export class ResourceHandler implements IDestroyable, IListenable<void> {
    * @private
    */
   private onProgress(url: string, itemsLoaded: number, itemsTotal: number): void {
-    console.log('Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.');
+    console.log(`Loading file: ${url}.\nLoaded ${itemsLoaded} of ${itemsTotal} files.`);
   }
 
   /**
@@ -151,7 +160,7 @@ export class ResourceHandler implements IDestroyable, IListenable<void> {
             object.geometry.dispose();
             object.material.dispose();
           }
-        })
+        });
       } else {
         item.dispose();
       }
