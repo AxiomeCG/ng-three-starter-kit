@@ -1,5 +1,8 @@
 import { Source, SourceType } from './Source';
 
+/**
+ * List of the resources to load
+ */
 export const sourceList: Source[] = [
   {
     name: 'environmentMapTexture',
