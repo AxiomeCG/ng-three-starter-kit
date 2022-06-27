@@ -13,10 +13,10 @@ export class TimeHandler implements IListenable<void> {
    */
   private readonly eventEmitter = new EventEmitter<void>();
 
-  private start: number = Date.now();
-  private delta: number = 0;
-  private current: number = 0;
-  private elapsed: number = 0;
+  private readonly start: number = Date.now();
+  private delta = 0;
+  private current = 0;
+  private elapsed = 0;
 
   constructor() {
     window.requestAnimationFrame(() => this.tick());
