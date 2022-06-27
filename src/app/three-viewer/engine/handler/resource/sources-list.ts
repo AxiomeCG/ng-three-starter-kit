@@ -1,9 +1,9 @@
-import { Source, SourceType } from './Source';
+import { ISource, SourceType } from './ISource';
 
 /**
  * List of the resources to load
  */
-export const sourceList: Source[] = [
+export const sourceList: ISource[] = [
   {
     name: 'environmentMapTexture',
     type: SourceType.CUBE_TEXTURE,

@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { CubeTexture, CubeTextureLoader, LoadingManager, Texture, TextureLoader } from 'three';
 import { IListenable } from '../../interface/IListenable';
 import { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import { Source, SourceType } from './Source';
+import { ISource, SourceType } from './ISource';
 
 /**
  * Type of objects that can be loaded into the project
@@ -52,7 +52,7 @@ export class ResourceHandler implements IListenable<void> {
    * Constructor
    * @param sourceList List of the source to load
    */
-  constructor(private readonly sourceList: Source[]) {
+  constructor(private readonly sourceList: ISource[]) {
     this.startLoading();
   }
 
@@ -98,7 +98,7 @@ export class ResourceHandler implements IListenable<void> {
    * @param source Source of the resource loaded
    * @param item Item loaded
    */
-  sourceLoaded(source: Source, item: Item): void {
+  sourceLoaded(source: ISource, item: Item): void {
     this.items.set(source.name, item);
   }
 

@@ -1,7 +1,7 @@
 /**
  * Source information mandatory to be loaded to the project.
  */
-export interface Source {
+export interface ISource {
   /**
    * Name of the resource
    */
