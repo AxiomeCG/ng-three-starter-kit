@@ -13,7 +13,7 @@ import { IDestroyable } from '../interface/IDestroyable';
  */
 class AnimationHolder {
   /**
-   * Dictionary of the animation action of the loaded GLTF
+   * Dictionary of loaded GLTF animation actions
    */
   readonly actions: {
     [animationName: string]: AnimationAction
