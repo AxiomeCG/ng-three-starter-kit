@@ -133,7 +133,6 @@ Handles the floor, the fox, the environment.
 
 - Jest integration for unit testing (over Karma/Jasmine)
 - Draco Compression option handling for the GLTF loader
-- **Code documentation :') (WIP)**
 
 # Note
 
