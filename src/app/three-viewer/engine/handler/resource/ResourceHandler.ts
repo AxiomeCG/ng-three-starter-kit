@@ -57,7 +57,6 @@ export class ResourceHandler implements IDestroyable, IListenable<void> {
     this.startLoading();
   }
 
-
   /**
    * Starts the loading of the resource by using the correct loader depending on the type of the resource.
    */
