@@ -36,7 +36,7 @@ export class ThreeViewerComponent implements OnInit, OnDestroy {
     }
     this.engine = new Engine(this.canvasRef.nativeElement, this.screenSizeHandlerService.getSize());
 
-    this.timeHandlerService.setConsumer((deltaTime) => this.engine?.update(deltaTime));
+    this.timeHandlerService.setConsumer((experienceTime) => this.engine?.update(experienceTime));
     this.timeHandlerService.tick();
 
     this.screenSizeHandlerService.setConsumer((size) => this.engine?.resize(size));

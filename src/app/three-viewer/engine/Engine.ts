@@ -8,12 +8,12 @@ import { ControlsHolder } from './holder/ControlsHolder';
 import { CameraHolder } from './holder/CameraHolder';
 import { World } from './world/World';
 import { DebugGUI } from './debug/DebugGUI';
+import { IExperienceTime } from './handler/time/IExperienceTime';
 
 /**
  * Core element of the viewer.
  * It orchestrates the instantiation of the core ThreeJS ecosystem's components (scene,
  * renderer, ...).
- * It is listening to some handlers to communicate the behaviour to follow to its "children".
  */
 export class Engine implements IResizable, IUpdatable, IDestroyable {
   /**
@@ -69,7 +69,7 @@ export class Engine implements IResizable, IUpdatable, IDestroyable {
   /**
    * Constructor
    * @param canvas Reference to the canvas of the parent viewer
-   * @param initialSize
+   * @param initialSize Initial size of the experience
    */
   constructor(canvas: HTMLCanvasElement, initialSize: ISize
   ) {
@@ -105,9 +105,10 @@ export class Engine implements IResizable, IUpdatable, IDestroyable {
 
   /**
    * Update all the elements that were added to the updatable list on each frame.
+   * @param experienceTime Bundle of time information about the frame
    */
-  update(deltaTime: number): void {
-    this.updatableList.forEach((updatable) => updatable.update(deltaTime));
+  update(experienceTime: IExperienceTime): void {
+    this.updatableList.forEach((updatable) => updatable.update(experienceTime));
   }
 
   /**

@@ -6,6 +6,7 @@ import GUI from 'lil-gui';
 import { AnimationAction } from 'three/src/animation/AnimationAction';
 import { IUpdatable } from '../interface/IUpdatable';
 import { IDestroyable } from '../interface/IDestroyable';
+import { IExperienceTime } from '../handler/time/IExperienceTime';
 
 /**
  * Bundle for the animation information
@@ -143,9 +144,10 @@ export class Fox implements IUpdatable, IDestroyable {
 
   /**
    * Updates the animation mixer to animate the fox on each frame.
+   * @param experienceTime Bundle of time information about the frame
    */
-  update(deltaTime: number): void {
-    this.animationHolder.mixer.update(deltaTime * 0.001);
+  update(experienceTime: IExperienceTime): void {
+    this.animationHolder.mixer.update(experienceTime.delta * 0.001);
   }
 
   /**

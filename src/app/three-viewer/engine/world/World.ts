@@ -8,6 +8,7 @@ import { DebugGUI } from '../debug/DebugGUI';
 import { Scene } from 'three';
 import { Fox } from './Fox';
 import { Floor } from './Floor';
+import { IExperienceTime } from '../handler/time/IExperienceTime';
 
 /**
  * Holds all the 3D elements that are instantiated in the 3D world.
@@ -61,10 +62,11 @@ export class World implements IUpdatable, IDestroyable {
 
   /**
    * Updates the element that needs to be updated on each tick.
+   * @param experienceTime Bundle of time information about the frame
    */
-  update(deltaTime: number): void {
+  update(experienceTime: IExperienceTime): void {
     if (this.fox) {
-      this.fox.update(deltaTime);
+      this.fox.update(experienceTime);
     }
   }
 

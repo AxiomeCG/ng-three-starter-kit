@@ -54,7 +54,7 @@ export class ScreenSizeHandlerService {
     };
   }
 
-  public setConsumer(consumer: (size: ISize) => void) {
+  setConsumer(consumer: (size: ISize) => void) {
     this.engineConsumer = consumer;
   }
 

@@ -1,4 +1,5 @@
 import { Injectable, NgZone } from '@angular/core';
+import { IExperienceTime } from './IExperienceTime';
 
 
 /**
@@ -9,28 +10,12 @@ import { Injectable, NgZone } from '@angular/core';
 })
 export class TimeHandlerService {
 
-  /**
-   * Start time of the application (at the instantiation of the TimeHandler).
-   * Used to calculate the elapsed time from the start of the experience.
-   * @private
-   */
-  private readonly start: number = Date.now();
-  /**
-   * Delta time between the current frame and the old one.
-   * Used to provide the same experience on every framerate.
-   * @private
-   */
-  private delta = 0;
-  /**
-   * Current time used to calculate the elapsed time and the delta time.
-   * @private
-   */
-  private current = 0;
-  /**
-   * Elapsed time from the start of the experience.
-   * @private
-   */
-  private elapsed = 0;
+  private readonly experienceTime: IExperienceTime = {
+    start: Date.now(),
+    delta: 0,
+    elapsed: 0,
+    current: 0,
+  };
 
   /**
    * Constructor
@@ -38,7 +23,7 @@ export class TimeHandlerService {
   constructor(private readonly ngZone: NgZone) {
   }
 
-  setConsumer(consumer: (deltaTime: number) => void): void {
+  setConsumer(consumer: (experienceTime: IExperienceTime) => void): void {
     this.engineConsumer = consumer;
   }
 
@@ -48,42 +33,24 @@ export class TimeHandlerService {
   tick() {
     this.ngZone.runOutsideAngular(() => {
       const currentTime = Date.now();
-      this.delta = currentTime - this.current;
-      this.current = currentTime;
+      this.experienceTime.delta = currentTime - this.experienceTime.current;
+      this.experienceTime.current = currentTime;
 
-      this.elapsed = this.current - this.start;
+      this.experienceTime.elapsed = this.experienceTime.current - this.experienceTime.start;
 
-      this.engineConsumer(this.delta);
+      this.engineConsumer(this.experienceTime);
       window.requestAnimationFrame(() => this.tick());
     });
   }
 
   /**
-   * Returns the delta time
-   * @returns The time between the current frame and the previous one.
+   * Gets the time object of the experience that contains the information like delta time, elapsed time from the start
+   * of the experience.
    */
-  getDeltaTime() {
-    return this.delta;
+  getExperienceTime() {
+    return { ...this.experienceTime };
   }
 
-  /**
-   * Returns the current time
-   * @returns A number representing the number of milliseconds for the current frame since January 1, 1970, 00:00:00,
-   *   UTC.
-   */
-  getCurrentTime() {
-    return this.current;
-  }
-
-  /**
-   * Returns the elapsed time from the beginning of the experience.
-   * Commonly used to add time uniform to shaders, for example.
-   * @returns the time elapsed since the application started up
-   */
-  getElapsedTime() {
-    return this.elapsed;
-  }
-
-  private engineConsumer: (deltaTime: number) => void = () => {};
+  private engineConsumer: (experienceTime: IExperienceTime) => void = () => {};
 
 }
