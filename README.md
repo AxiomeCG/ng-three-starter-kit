@@ -69,7 +69,7 @@ Holder for the OrbitControls chosen for the template. Can be switched to other t
 - Output encoding to sRGB
 - Reinhard tone mapping ON
 - Shadow map (PCF Shadow Map) enabled
-- The screen resize and the pixel ratio are handled
+- The screen resize and the pixel ratio is handled
 
 ## Handlers
 
