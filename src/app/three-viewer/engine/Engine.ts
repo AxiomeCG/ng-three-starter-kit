@@ -129,7 +129,8 @@ export class Engine implements IResizable, IUpdatable, IDestroyable {
   }
 
   /**
-   * Destroys all the destroyable elements of the corresponding list, unsubscribe from handlers' observable and dispose from all the left elements of the scene.
+   * Destroys all the destroyable elements of the corresponding list, unsubscribe from handlers' observable and dispose
+   * from all the left elements of the scene.
    */
   destroy(): void {
     this.subscriptionList.forEach((subscription) => subscription.unsubscribe());

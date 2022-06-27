@@ -120,6 +120,24 @@ export class ResourceHandler implements IDestroyable, IListenable<void> {
   }
 
   /**
+   * Disposes the resources loaded
+   */
+  destroy(): void {
+    this.items.forEach((item) => {
+      if ('scene' in item) {
+        item.scene.traverse((object) => {
+          if (object instanceof Mesh) {
+            object.geometry.dispose();
+            object.material.dispose();
+          }
+        });
+      } else {
+        item.dispose();
+      }
+    });
+  }
+
+  /**
    * Callback for the loading manager to call when the Loading is completed. It fires the event of the event emitter.
    * @private
    */
@@ -146,23 +164,5 @@ export class ResourceHandler implements IDestroyable, IListenable<void> {
    */
   private onError(url: string): void {
     console.log('There was an error loading ' + url);
-  }
-
-  /**
-   * Disposes the resources loaded
-   */
-  destroy(): void {
-    this.items.forEach((item) => {
-      if ('scene' in item) {
-        item.scene.traverse((object) => {
-          if (object instanceof Mesh) {
-            object.geometry.dispose();
-            object.material.dispose();
-          }
-        });
-      } else {
-        item.dispose();
-      }
-    });
   }
 }

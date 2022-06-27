@@ -151,7 +151,7 @@ export class Fox implements IUpdatable, IDestroyable {
     this.animationHolder.mixer.update(this.timeHandler.getDeltaTime() * 0.001);
   }
 
-  destroy():void {
-    this.scene.remove(this.modelGroup)
+  destroy(): void {
+    this.scene.remove(this.modelGroup);
   }
 }

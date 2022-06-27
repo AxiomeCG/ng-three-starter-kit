@@ -88,6 +88,20 @@ export class Environment implements IDestroyable {
   }
 
   /**
+   * Checks if there are the correct properties on the material for setting the environment map and the environment map
+   * intensity.
+   * @param material Material to check
+   * @private
+   * @returns true if the object possesses the correct attributes to apply the environment map
+   */
+  private static isEnvMappable(material: Material): boolean {
+    return material instanceof MeshStandardMaterial
+      || material instanceof MeshLambertMaterial
+      || material instanceof MeshPhongMaterial
+      || material instanceof MeshPhysicalMaterial;
+  }
+
+  /**
    * Sets up the directional light of the scene (position, shadow casting, shadow optimization ...)
    */
   configureSunLight(): void {
@@ -141,20 +155,6 @@ export class Environment implements IDestroyable {
           .step(0.001)
           .onChange(() => this.environmentMap.updateMaterials());
     }
-  }
-
-  /**
-   * Checks if there are the correct properties on the material for setting the environment map and the environment map
-   * intensity.
-   * @param material Material to check
-   * @private
-   * @returns true if the object possesses the correct attributes to apply the environment map
-   */
-  private static isEnvMappable(material: Material): boolean {
-    return material instanceof MeshStandardMaterial
-      || material instanceof MeshLambertMaterial
-      || material instanceof MeshPhongMaterial
-      || material instanceof MeshPhysicalMaterial;
   }
 
   /**
