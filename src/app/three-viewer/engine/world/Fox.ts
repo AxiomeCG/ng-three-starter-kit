@@ -7,15 +7,30 @@ import GUI from 'lil-gui';
 import { AnimationAction } from 'three/src/animation/AnimationAction';
 import { IUpdatable } from '../interface/IUpdatable';
 
+/**
+ * Bundle for the animation information
+ */
 class AnimationHolder {
+  /**
+   * Dictionary of the animation action of the loaded GLTF
+   */
   readonly actions: {
     [animationName: string]: AnimationAction
   } = {};
 
+  /**
+   * Constructor
+   * @param mixer Mixer of the animation
+   * @param current Initial animation
+   */
   constructor(readonly mixer: AnimationMixer,
               readonly current?: AnimationAction) {}
 
-  play(name: string) {
+  /**
+   * Plays the animation corresponding to the name.
+   * @param name Name of the animation action to play. Should exists in the list of available actions.
+   */
+  play(name: string): void {
     console.log('Play', name);
     const newAction = this.actions[name];
     const oldAction = this.actions['current'];
@@ -29,13 +44,38 @@ class AnimationHolder {
   }
 }
 
+/**
+ * Holds the information about the GLTF Fox loaded
+ */
 export class Fox implements IUpdatable {
+  /**
+   * GLTF loader product of the fox
+   * @private
+   */
   private readonly gltf: GLTF;
+  /**
+   * Root group of the Fox model
+   * @private
+   */
   private readonly modelGroup: Group;
+  /**
+   * Information of the animation for the Fox
+   * @private
+   */
   private readonly animationHolder: AnimationHolder;
-
+  /**
+   * Debug tool to tweak the Fox and change its animations
+   * @private
+   */
   private debugFolder: GUI | undefined;
 
+  /**
+   * Constructor
+   * @param scene Scene to add the fox
+   * @param resourceHandler Resource handler that loads the GLTF file of the fox
+   * @param timeHandler Time handler to update the Fox while playing the animation
+   * @param debugGUI Tool to tweak the fox animations
+   */
   constructor(private readonly scene: Scene,
               private readonly resourceHandler: ResourceHandler,
               private readonly timeHandler: TimeHandler,
@@ -56,7 +96,11 @@ export class Fox implements IUpdatable {
     this.configureAnimation();
   }
 
-  configureModel() {
+  /**
+   * Sets up the Fox in the Scene.
+   * Configure the capability of casting shadow for meshes composing the fox.
+   */
+  configureModel(): void {
     this.modelGroup.scale.set(0.02, 0.02, 0.02);
     this.scene.add(this.modelGroup);
 
@@ -67,7 +111,11 @@ export class Fox implements IUpdatable {
     });
   }
 
-  configureAnimation() {
+  /**
+   * Sets up the animations of the Fox loaded from the gltf file.
+   * Switching between animations is available in the GUI panel.
+   */
+  configureAnimation(): void {
 
     this.animationHolder.actions['idle'] = this.animationHolder.mixer.clipAction(this.gltf.animations[0]);
     this.animationHolder.actions['walking'] = this.animationHolder.mixer.clipAction(this.gltf.animations[1]);
@@ -95,7 +143,10 @@ export class Fox implements IUpdatable {
     }
   }
 
-  update() {
+  /**
+   * Updates the animation mixer to animate the fox on each frame.
+   */
+  update(): void {
     this.animationHolder.mixer.update(this.timeHandler.getDeltaTime() * 0.001);
   }
 }
