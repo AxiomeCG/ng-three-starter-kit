@@ -42,14 +42,14 @@ export class ScreenSizeHandler implements IListenable<ISize> {
   }
 
   /**
-   * Get the current pixel ratio to apply. Can be either 1 or 2 (above 2 would be overkill)
+   * Returns the current pixel ratio to apply. Can be either 1 or 2 (above 2 would be overkill)
    */
   getPixelRatio(): number {
     return Math.min(window.devicePixelRatio, 2);
   }
 
   /**
-   * Get an information bundle about the viewport size
+   * Returns an information bundle about the viewport size
    */
   getSize(): ISize {
     return {
