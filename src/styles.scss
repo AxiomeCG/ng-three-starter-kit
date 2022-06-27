@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+*
+{
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body
+{
+  overflow: hidden;
+}
+
+.webgl
+{
+  position: fixed;
+  top: 0;
+  left: 0;
+  outline: none;
+}
