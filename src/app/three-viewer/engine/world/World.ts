@@ -78,6 +78,8 @@ export class World implements IUpdatable, IDestroyable {
   destroy(): void {
     this.subscription.unsubscribe();
 
+    this.resourceHandler.destroy();
+
     this.floor?.destroy();
     this.fox?.destroy();
     this.environment?.destroy();

@@ -1,9 +1,10 @@
 import { EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CubeTexture, CubeTextureLoader, LoadingManager, Texture, TextureLoader } from 'three';
+import { CubeTexture, CubeTextureLoader, LoadingManager, Mesh, Texture, TextureLoader } from 'three';
 import { IListenable } from '../../interface/IListenable';
 import { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { ISource, SourceType } from './ISource';
+import { IDestroyable } from '../../interface/IDestroyable';
 
 /**
  * Type of objects that can be loaded into the project
@@ -13,7 +14,7 @@ export type Item = GLTF | Texture | CubeTexture;
 /**
  * Handles the loading of the project's resources (textures, models...)
  */
-export class ResourceHandler implements IListenable<void> {
+export class ResourceHandler implements IDestroyable, IListenable<void> {
   /**
    * Map of the resource items loaded
    */
@@ -55,6 +56,7 @@ export class ResourceHandler implements IListenable<void> {
   constructor(private readonly sourceList: ISource[]) {
     this.startLoading();
   }
+
 
   /**
    * Starts the loading of the resource by using the correct loader depending on the type of the resource.
@@ -136,5 +138,23 @@ export class ResourceHandler implements IListenable<void> {
    */
   private onError(url: string): void {
     console.log('There was an error loading ' + url);
+  }
+
+  /**
+   * Disposes the resources loaded
+   */
+  destroy(): void {
+    this.items.forEach((item) => {
+      if ('scene' in item) {
+        item.scene.traverse((object) => {
+          if (object instanceof Mesh) {
+            object.geometry.dispose();
+            object.material.dispose();
+          }
+        })
+      } else {
+        item.dispose();
+      }
+    });
   }
 }
