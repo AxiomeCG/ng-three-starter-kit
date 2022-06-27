@@ -3,10 +3,27 @@ import { DebugGUI } from '../debug/DebugGUI';
 import { DirectionalLight, Scene } from 'three';
 import GUI from 'lil-gui';
 
+/**
+ * Object representing the 3D scene environment properties like lights.
+ */
 export class Environment {
+  /**
+   * Debug tool objects to tweak the lights.
+   * @private
+   */
   private readonly debugFolder: GUI | undefined;
+  /**
+   * Directional light of the scene.
+   * @private
+   */
   private readonly sunLight: DirectionalLight;
 
+  /**
+   * Constructor
+   * @param scene ThreeJS scene to add the lights
+   * @param resourceHandler Resources loaded in the project
+   * @param debugGUI
+   */
   constructor(private readonly scene: Scene,
               private readonly resourceHandler: ResourceHandler,
               private readonly debugGUI: DebugGUI
@@ -50,4 +67,6 @@ export class Environment {
           .step(0.001);
     }
   }
+
+
 }
