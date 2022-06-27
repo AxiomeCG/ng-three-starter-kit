@@ -15,8 +15,16 @@ export class ThreeViewerComponent implements OnInit, OnDestroy {
    * Made static to ensure that the canvas is available in the ngOnInit part.
    */
   @ViewChild('canvas', { static: true }) canvasRef: ElementRef<HTMLCanvasElement> | undefined;
+  /**
+   * Engine of the 3D experience to generate the ThreeJS scene.
+   * @private
+   */
   private engine: Engine | undefined;
 
+  /**
+   * Bootstraps the 3D engine
+   * @throws Error if the canvas to display the experience is undefined
+   */
   ngOnInit() {
     if (!this.canvasRef) {
       throw new Error('Canvas should be defined to bootstrap the WebGL Engine');
@@ -24,6 +32,9 @@ export class ThreeViewerComponent implements OnInit, OnDestroy {
     this.engine = new Engine(this.canvasRef.nativeElement);
   }
 
+  /**
+   * Cleans up the engine on component destruction
+   */
   ngOnDestroy(): void {
     this.engine?.destroy();
   }
