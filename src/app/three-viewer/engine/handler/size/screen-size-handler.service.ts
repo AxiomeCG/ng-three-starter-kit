@@ -54,9 +54,17 @@ export class ScreenSizeHandlerService {
     };
   }
 
+  /**
+   * Sets the consumer that will be used by the engine to determine its resize behaviour based on the new size and new
+   * pixel ratio
+   * @param consumer Callback that needs to be executed outside the NgZone to avoid heavy change detection processes.
+   */
   setConsumer(consumer: (size: ISize) => void) {
     this.engineConsumer = consumer;
   }
 
+  /**
+   * Slot to keep track of the engine consumer to execute out of the NgZone on resize
+   */
   private engineConsumer: (size: ISize) => void = () => {};
 }

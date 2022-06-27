@@ -10,6 +10,10 @@ import { IExperienceTime } from './IExperienceTime';
 })
 export class TimeHandlerService {
 
+  /**
+   * Bundle to keep information about the time of the experience.
+   * @private
+   */
   private readonly experienceTime: IExperienceTime = {
     start: Date.now(),
     delta: 0,
@@ -23,12 +27,17 @@ export class TimeHandlerService {
   constructor(private readonly ngZone: NgZone) {
   }
 
+  /**
+   * Sets the consumer that will be used by the engine to determine its update behaviour based on the new time bundle
+   * @param consumer Callback that needs to be executed outside the NgZone to avoid heavy change detection processes.
+   */
   setConsumer(consumer: (experienceTime: IExperienceTime) => void): void {
     this.engineConsumer = consumer;
   }
 
   /**
    * Handles the time of the experience by emitting on each frame an event to forward updates.
+   * Executed outside the NgZone to avoid heavy load and performance issues due to the Change Detection.
    */
   tick() {
     this.ngZone.runOutsideAngular(() => {
@@ -51,6 +60,9 @@ export class TimeHandlerService {
     return { ...this.experienceTime };
   }
 
+  /**
+   * Slot to keep track of the engine consumer to execute out of the NgZone on tick
+   */
   private engineConsumer: (experienceTime: IExperienceTime) => void = () => {};
 
 }
