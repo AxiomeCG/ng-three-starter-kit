@@ -1,5 +1,4 @@
 import { ResourceHandler } from '../handler/resource/ResourceHandler';
-import { TimeHandler } from '../handler/time/TimeHandler';
 import { AnimationMixer, Group, Mesh, Scene } from 'three';
 import { DebugGUI } from '../debug/DebugGUI';
 import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader';
@@ -74,12 +73,10 @@ export class Fox implements IUpdatable, IDestroyable {
    * Constructor
    * @param scene Scene to add the fox
    * @param resourceHandler Resource handler that loads the GLTF file of the fox
-   * @param timeHandler Time handler to update the Fox while playing the animation
    * @param debugGUI Tool to tweak the fox animations
    */
   constructor(private readonly scene: Scene,
               private readonly resourceHandler: ResourceHandler,
-              private readonly timeHandler: TimeHandler,
               private readonly debugGUI: DebugGUI) {
 
     if (this.debugGUI.ui) {
@@ -147,8 +144,8 @@ export class Fox implements IUpdatable, IDestroyable {
   /**
    * Updates the animation mixer to animate the fox on each frame.
    */
-  update(): void {
-    this.animationHolder.mixer.update(this.timeHandler.getDeltaTime() * 0.001);
+  update(deltaTime: number): void {
+    this.animationHolder.mixer.update(deltaTime * 0.001);
   }
 
   /**

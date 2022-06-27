@@ -1,17 +1,13 @@
-import { EventEmitter } from '@angular/core';
-import { Observable } from 'rxjs';
-import { IListenable } from '../../interface/IListenable';
+import { Injectable, NgZone } from '@angular/core';
+
 
 /**
- * Handler for the time of the 3D experience. It notifies subscribers on each frame.
+ * Handler for the time of the 3D experience.
  */
-export class TimeHandler implements IListenable<void> {
-
-  /**
-   * Emits an empty event on each frame to inform the subscribers.
-   * @private
-   */
-  private readonly eventEmitter = new EventEmitter<void>();
+@Injectable({
+  providedIn: 'root'
+})
+export class TimeHandlerService {
 
   /**
    * Start time of the application (at the instantiation of the TimeHandler).
@@ -39,23 +35,27 @@ export class TimeHandler implements IListenable<void> {
   /**
    * Constructor
    */
-  constructor() {
-    window.requestAnimationFrame(() => this.tick());
-    this.tick();
+  constructor(private readonly ngZone: NgZone) {
+  }
+
+  setConsumer(consumer: (deltaTime: number) => void): void {
+    this.engineConsumer = consumer;
   }
 
   /**
    * Handles the time of the experience by emitting on each frame an event to forward updates.
    */
   tick() {
-    const currentTime = Date.now();
-    this.delta = currentTime - this.current;
-    this.current = currentTime;
+    this.ngZone.runOutsideAngular(() => {
+      const currentTime = Date.now();
+      this.delta = currentTime - this.current;
+      this.current = currentTime;
 
-    this.elapsed = this.current - this.start;
+      this.elapsed = this.current - this.start;
 
-    this.eventEmitter.emit();
-    window.requestAnimationFrame(() => this.tick());
+      this.engineConsumer(this.delta);
+      window.requestAnimationFrame(() => this.tick());
+    });
   }
 
   /**
@@ -84,10 +84,6 @@ export class TimeHandler implements IListenable<void> {
     return this.elapsed;
   }
 
-  /**
-   * Exposes an observable that emits an empty event on the stream to announce a new frame.
-   */
-  listen(): Observable<void> {
-    return this.eventEmitter.asObservable();
-  }
+  private engineConsumer: (deltaTime: number) => void = () => {};
+
 }

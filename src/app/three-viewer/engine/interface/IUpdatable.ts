@@ -5,5 +5,5 @@ export interface IUpdatable {
   /**
    * Updates the object to the next frame state.
    */
-  update(): void;
+  update(deltaTime: number): void;
 }

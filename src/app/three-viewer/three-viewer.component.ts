@@ -1,5 +1,7 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Engine } from './engine/Engine';
+import { TimeHandlerService } from './engine/handler/time/time-handler.service';
+import { ScreenSizeHandlerService } from './engine/handler/size/screen-size-handler.service';
 
 /**
  * ThreeJS viewer containing the canvas to display the WebGL experience and the engine that runs the whole.
@@ -21,6 +23,9 @@ export class ThreeViewerComponent implements OnInit, OnDestroy {
    */
   private engine: Engine | undefined;
 
+  constructor(private readonly timeHandlerService: TimeHandlerService,
+              private readonly screenSizeHandlerService: ScreenSizeHandlerService) {}
+
   /**
    * Bootstraps the 3D engine
    * @throws Error if the canvas to display the experience is undefined
@@ -29,7 +34,14 @@ export class ThreeViewerComponent implements OnInit, OnDestroy {
     if (!this.canvasRef) {
       throw new Error('Canvas should be defined to bootstrap the WebGL Engine');
     }
-    this.engine = new Engine(this.canvasRef.nativeElement);
+    this.engine = new Engine(this.canvasRef.nativeElement, this.screenSizeHandlerService.getSize());
+
+    this.timeHandlerService.setConsumer((deltaTime) => this.engine?.update(deltaTime));
+    this.timeHandlerService.tick();
+
+    this.screenSizeHandlerService.setConsumer((size) => this.engine?.resize(size));
+
+
   }
 
   /**

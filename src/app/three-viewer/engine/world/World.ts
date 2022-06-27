@@ -7,7 +7,6 @@ import { Environment } from './Environment';
 import { DebugGUI } from '../debug/DebugGUI';
 import { Scene } from 'three';
 import { Fox } from './Fox';
-import { TimeHandler } from '../handler/time/TimeHandler';
 import { Floor } from './Floor';
 
 /**
@@ -45,11 +44,9 @@ export class World implements IUpdatable, IDestroyable {
   /**
    * Constructor
    * @param scene Scene to which add the 3D object present in the world
-   * @param timeHandler Handler for time information needed for some objects (for animation purpose, for example)
    * @param debugGUI Panel to tweak the world object.
    */
   constructor(private readonly scene: Scene,
-              private readonly timeHandler: TimeHandler,
               private readonly debugGUI: DebugGUI) {
     this.subscription = this.resourceHandler.listen()
                             .subscribe(() => {
@@ -57,7 +54,6 @@ export class World implements IUpdatable, IDestroyable {
                               this.floor = new Floor(scene, this.resourceHandler);
                               this.fox = new Fox(scene,
                                 this.resourceHandler,
-                                this.timeHandler,
                                 debugGUI);
                               this.environment = new Environment(scene, this.resourceHandler, debugGUI);
                             });
@@ -66,9 +62,9 @@ export class World implements IUpdatable, IDestroyable {
   /**
    * Updates the element that needs to be updated on each tick.
    */
-  update(): void {
+  update(deltaTime: number): void {
     if (this.fox) {
-      this.fox.update();
+      this.fox.update(deltaTime);
     }
   }
 
