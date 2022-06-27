@@ -1,11 +1,11 @@
 # ng-three-starter-kit
- 
+
 ![Angular](https://img.shields.io/badge/angular-%23DD0031.svg?style=for-the-badge&logo=angular&logoColor=white)
 ![Threejs](https://img.shields.io/badge/threejs-black?style=for-the-badge&logo=three.js&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 
- [![Documentation](https://exomus.github.io/docs/ng-three-starter-kit/v0.1.0/images/coverage-badge-documentation.svg)](https://exomus.github.io/docs/ng-three-starter-kit/v0.1.0/)
- 
+[![Documentation](https://exomus.github.io/docs/ng-three-starter-kit/v0.2.0/images/coverage-badge-documentation.svg)](https://exomus.github.io/docs/ng-three-starter-kit/v0.2.0/)
+
 [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-black.svg)](https://sonarcloud.io/summary/new_code?id=Exomus_ng-three-starter-kit)
 
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Exomus_ng-three-starter-kit&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=Exomus_ng-three-starter-kit)
@@ -17,10 +17,6 @@
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=Exomus_ng-three-starter-kit&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=Exomus_ng-three-starter-kit)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=Exomus_ng-three-starter-kit&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=Exomus_ng-three-starter-kit)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Exomus_ng-three-starter-kit&metric=bugs)](https://sonarcloud.io/summary/new_code?id=Exomus_ng-three-starter-kit)
-
-
-
-
 
 # Stack
 
@@ -46,6 +42,8 @@ I reworked the whole thing, so that it would fit in an Angular 14 project, with 
     - Texture Loader: You should see the floor with both color and normal textures.
     - Cube Texture Loader: You should also see that the environment map is loaded and applied on the scene.
 - Architecture of the project in many folders to keep it organized
+- Executes the animation loop and the resize outside the NgZone to avoid performance issues due to Angular's Change
+  detection
 
 # Documentation
 
@@ -76,22 +74,23 @@ Holder for the OrbitControls chosen for the template. Can be switched to other t
 - Shadow map (PCF Shadow Map) enabled
 - The screen resize and the pixel ratio is handled
 
-## Handlers
+## Services
 
-A handler takes care of the "Util" part of the viewer.
+These services do the heavy lifting of the NgZone management that preserves the performance of the Angular application.
 
-### ScreenSizeHandler
+### ScreenSizeService
 
 Util to handle the screen size.
 Updates on viewport resizing.
-It emits an event that contains the new size and pixel ratio on resize via an Observable.
+It executes the consumer callback of the engine while providing it the new size and pixel ratio
 
-### TimeHandler
+### TimeService
 
 Util to handle the common tick loop.
-It emits an empty event that is triggered in each loop via an Observable.
+It executes the consumer callback of the engine while providing it the time information of the current new frame.
 
-### ResourceHandler
+## Loader
+### ResourceLoader
 
 Util to handle GLTF models, textures, and cube textures.
 (It is extensible as you wish)
@@ -118,15 +117,17 @@ Mostly used for the handler to notify other objects via their EventEmitter.
 ### IResizable
 
 Contract that marks the class that implements it as resizable.
-Add your objects in your Engine "resizableList" and a loop will take care to call each `resize()`
-when the SizeHandler notifies the Engine.
+Add your objects in your Engine "resizableList", this will be added to the callback that is called by the
+ScreenSizeService
 
 ### IUpdatable
+
 Contract that marks the class that implements it as updatable.
 Add your objects in your Engine "updatableList" and a loop will take care to call each `update()`
 when the TimeHandler loop notifies the Engine of a new frame.
 
 ## World
+
 Handles the floor, the fox, the environment.
 
 # Incoming Features

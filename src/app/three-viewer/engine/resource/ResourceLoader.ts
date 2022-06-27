@@ -1,10 +1,10 @@
 import { EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CubeTexture, CubeTextureLoader, LoadingManager, Mesh, Texture, TextureLoader } from 'three';
-import { IListenable } from '../../interface/IListenable';
+import { IListenable } from '../interface/IListenable';
 import { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { ISource, SourceType } from './ISource';
-import { IDestroyable } from '../../interface/IDestroyable';
+import { IDestroyable } from '../interface/IDestroyable';
 
 /**
  * Type of objects that can be loaded into the project
@@ -14,7 +14,7 @@ export type Item = GLTF | Texture | CubeTexture;
 /**
  * Handles the loading of the project's resources (textures, models...)
  */
-export class ResourceHandler implements IDestroyable, IListenable<void> {
+export class ResourceLoader implements IDestroyable, IListenable<void> {
   /**
    * Map of the resource items loaded
    */

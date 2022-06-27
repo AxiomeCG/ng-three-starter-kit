@@ -1,4 +1,4 @@
-import { ResourceHandler } from '../handler/resource/ResourceHandler';
+import { ResourceLoader } from '../resource/ResourceLoader';
 import { DebugGUI } from '../debug/DebugGUI';
 import {
   DirectionalLight,
@@ -58,11 +58,11 @@ export class Environment implements IDestroyable {
   /**
    * Constructor
    * @param scene ThreeJS scene to add the lights
-   * @param resourceHandler Resources loaded in the project
+   * @param resourceLoader Resources loaded in the project
    * @param debugGUI
    */
   constructor(private readonly scene: Scene,
-              private readonly resourceHandler: ResourceHandler,
+              private readonly resourceLoader: ResourceLoader,
               private readonly debugGUI: DebugGUI
   ) {
     if (this.debugGUI.ui) {
@@ -72,7 +72,7 @@ export class Environment implements IDestroyable {
     this.configureSunLight();
     this.environmentMap = {
       intensity: 0.4,
-      texture: this.resourceHandler.items.get('environmentMapTexture') as Texture,
+      texture: this.resourceLoader.items.get('environmentMapTexture') as Texture,
       updateMaterials: () => {
         this.scene.traverse((child) => {
           if (child instanceof Mesh && Environment.isEnvMappable(child.material)) {

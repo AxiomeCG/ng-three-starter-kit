@@ -1,4 +1,4 @@
-import { ISize } from '../handler/size/ISize';
+import { ISize } from '../service/size/ISize';
 
 /**
  * Contract that symbolizes an object that handles resize and needs to be resized on DOM resize event.

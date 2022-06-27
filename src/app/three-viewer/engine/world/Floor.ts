@@ -1,6 +1,6 @@
 import { CircleGeometry, Mesh, MeshStandardMaterial, RepeatWrapping, sRGBEncoding, Texture } from 'three';
 import { Scene } from 'three/src/scenes/Scene';
-import { ResourceHandler } from '../handler/resource/ResourceHandler';
+import { ResourceLoader } from '../resource/ResourceLoader';
 import { IDestroyable } from '../interface/IDestroyable';
 
 /**
@@ -17,8 +17,8 @@ export class Floor implements IDestroyable {
    * @private
    */
   private readonly textures: { color: Texture, normal: Texture } = {
-    color: this.resourceHandler.items.get('grassColorTexture') as Texture,
-    normal: this.resourceHandler.items.get('grassNormalTexture') as Texture,
+    color: this.resourceLoader.items.get('grassColorTexture') as Texture,
+    normal: this.resourceLoader.items.get('grassNormalTexture') as Texture,
   };
   /**
    * ThreeJS Material used on the floor to apply the textures.
@@ -37,10 +37,10 @@ export class Floor implements IDestroyable {
   /**
    * Constructor
    * @param scene Scene to which is added the floor mesh
-   * @param resourceHandler Resource handler that loaded the textures to apply on the floor
+   * @param resourceLoader Resource that has loaded the textures to apply on the floor
    */
   constructor(private readonly scene: Scene,
-              private readonly resourceHandler: ResourceHandler) {
+              private readonly resourceLoader: ResourceLoader) {
     this.configureTextures();
     this.configureMesh();
   }

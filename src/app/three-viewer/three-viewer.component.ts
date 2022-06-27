@@ -1,5 +1,7 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Engine } from './engine/Engine';
+import { TimeService } from './engine/service/time/time.service';
+import { ScreenSizeService } from './engine/service/size/screen-size.service';
 
 /**
  * ThreeJS viewer containing the canvas to display the WebGL experience and the engine that runs the whole.
@@ -22,6 +24,14 @@ export class ThreeViewerComponent implements OnInit, OnDestroy {
   private engine: Engine | undefined;
 
   /**
+   * Constructor
+   * @param timeService Service that handles the animation loop and the time of the 3D experience engine
+   * @param screenSizeService Service that handles the screen resize for the 3D experience engine
+   */
+  constructor(private readonly timeService: TimeService,
+              private readonly screenSizeService: ScreenSizeService) {}
+
+  /**
    * Bootstraps the 3D engine
    * @throws Error if the canvas to display the experience is undefined
    */
@@ -29,7 +39,12 @@ export class ThreeViewerComponent implements OnInit, OnDestroy {
     if (!this.canvasRef) {
       throw new Error('Canvas should be defined to bootstrap the WebGL Engine');
     }
-    this.engine = new Engine(this.canvasRef.nativeElement);
+    this.engine = new Engine(this.canvasRef.nativeElement, this.screenSizeService.getSize());
+
+    this.timeService.setConsumer((experienceTime) => this.engine?.update(experienceTime));
+    this.timeService.tick(); //First impulsion of the tick loop
+
+    this.screenSizeService.setConsumer((size) => this.engine?.resize(size));
   }
 
   /**

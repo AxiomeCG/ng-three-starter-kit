@@ -1,30 +1,30 @@
 import { IUpdatable } from '../interface/IUpdatable';
-import { ResourceHandler } from '../handler/resource/ResourceHandler';
+import { ResourceLoader } from '../resource/ResourceLoader';
 import { Subscription } from 'rxjs';
 import { IDestroyable } from '../interface/IDestroyable';
-import { sourceList } from '../handler/resource/sources-list';
+import { sourceList } from '../resource/sources-list';
 import { Environment } from './Environment';
 import { DebugGUI } from '../debug/DebugGUI';
 import { Scene } from 'three';
 import { Fox } from './Fox';
-import { TimeHandler } from '../handler/time/TimeHandler';
 import { Floor } from './Floor';
+import { IExperienceTime } from '../service/time/IExperienceTime';
 
 /**
  * Holds all the 3D elements that are instantiated in the 3D world.
  */
 export class World implements IUpdatable, IDestroyable {
   /**
-   * Reference to the resource handler subscription that needs to be destroyed when the World instance is garbage
+   * Reference to the resource loader subscription that needs to be destroyed when the World instance is garbage
    * collected.
    * @private
    */
   private readonly subscription: Subscription;
   /**
-   * Resource handler that loads the sources described in the corresponding file.
+   * Resource loader that loads the sources described in the corresponding file.
    * @private
    */
-  private readonly resourceHandler = new ResourceHandler(sourceList);
+  private readonly resourceLoader = new ResourceLoader(sourceList);
 
   /**
    * Floor that is displayed in the 3D experience.
@@ -45,30 +45,28 @@ export class World implements IUpdatable, IDestroyable {
   /**
    * Constructor
    * @param scene Scene to which add the 3D object present in the world
-   * @param timeHandler Handler for time information needed for some objects (for animation purpose, for example)
    * @param debugGUI Panel to tweak the world object.
    */
   constructor(private readonly scene: Scene,
-              private readonly timeHandler: TimeHandler,
               private readonly debugGUI: DebugGUI) {
-    this.subscription = this.resourceHandler.listen()
+    this.subscription = this.resourceLoader.listen()
                             .subscribe(() => {
                               console.log('Resources are ready');
-                              this.floor = new Floor(scene, this.resourceHandler);
+                              this.floor = new Floor(scene, this.resourceLoader);
                               this.fox = new Fox(scene,
-                                this.resourceHandler,
-                                this.timeHandler,
+                                this.resourceLoader,
                                 debugGUI);
-                              this.environment = new Environment(scene, this.resourceHandler, debugGUI);
+                              this.environment = new Environment(scene, this.resourceLoader, debugGUI);
                             });
   }
 
   /**
    * Updates the element that needs to be updated on each tick.
+   * @param experienceTime Bundle of time information about the frame
    */
-  update(): void {
+  update(experienceTime: IExperienceTime): void {
     if (this.fox) {
-      this.fox.update();
+      this.fox.update(experienceTime);
     }
   }
 
@@ -78,7 +76,7 @@ export class World implements IUpdatable, IDestroyable {
   destroy(): void {
     this.subscription.unsubscribe();
 
-    this.resourceHandler.destroy();
+    this.resourceLoader.destroy();
 
     this.floor?.destroy();
     this.fox?.destroy();
