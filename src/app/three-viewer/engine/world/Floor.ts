@@ -1,11 +1,12 @@
 import { CircleGeometry, Mesh, MeshStandardMaterial, RepeatWrapping, sRGBEncoding, Texture } from 'three';
 import { Scene } from 'three/src/scenes/Scene';
 import { ResourceHandler } from '../handler/resource/ResourceHandler';
+import { IDestroyable } from '../interface/IDestroyable';
 
 /**
  * Contains the 3D floor of the scene
  */
-export class Floor {
+export class Floor implements IDestroyable {
   /**
    * ThreeJS geometry of the floor.
    * @private
@@ -66,5 +67,14 @@ export class Floor {
     this.mesh.rotation.x = -Math.PI * 0.5;
     this.mesh.receiveShadow = true;
     this.scene.add(this.mesh);
+  }
+
+  /**
+   * Dispose of the floor
+   */
+  destroy(): void {
+    this.scene.remove(this.mesh);
+    this.geometry.dispose();
+    this.material.dispose();
   }
 }

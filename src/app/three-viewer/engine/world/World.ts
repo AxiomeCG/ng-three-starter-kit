@@ -73,9 +73,13 @@ export class World implements IUpdatable, IDestroyable {
   }
 
   /**
-   * Destroys the world and dispose of resources to avoid memory leaks.
+   * Destroys the world and dispose of resources to avoid memory leaks and so on.
    */
   destroy(): void {
     this.subscription.unsubscribe();
+
+    this.floor?.destroy();
+    this.fox?.destroy();
+    this.environment?.destroy();
   }
 }

@@ -13,6 +13,7 @@ import {
   Texture
 } from 'three';
 import GUI from 'lil-gui';
+import { IDestroyable } from '../interface/IDestroyable';
 
 /**
  * Properties of the environment map
@@ -26,6 +27,7 @@ interface EnvironmentMapHolder {
    * Cube texture of the environment
    */
   texture: Texture;
+
   /**
    * Updates the scene to apply the envMap to each material of the scene that supports environment maps.
    */
@@ -35,7 +37,7 @@ interface EnvironmentMapHolder {
 /**
  * Object representing the 3D scene environment properties like lights.
  */
-export class Environment {
+export class Environment implements IDestroyable {
   /**
    * Debug tool objects to tweak the lights.
    * @private
@@ -153,6 +155,14 @@ export class Environment {
       || material instanceof MeshLambertMaterial
       || material instanceof MeshPhongMaterial
       || material instanceof MeshPhysicalMaterial;
+  }
+
+  /**
+   * Removes the light and environment map from the scene
+   */
+  destroy(): void {
+    this.scene.remove(this.sunLight);
+    this.scene.environment = null;
   }
 
 }

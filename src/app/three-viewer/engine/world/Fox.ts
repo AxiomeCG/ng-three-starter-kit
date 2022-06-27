@@ -6,6 +6,7 @@ import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader';
 import GUI from 'lil-gui';
 import { AnimationAction } from 'three/src/animation/AnimationAction';
 import { IUpdatable } from '../interface/IUpdatable';
+import { IDestroyable } from '../interface/IDestroyable';
 
 /**
  * Bundle for the animation information
@@ -47,7 +48,7 @@ class AnimationHolder {
 /**
  * Holds the information about the GLTF Fox loaded
  */
-export class Fox implements IUpdatable {
+export class Fox implements IUpdatable, IDestroyable {
   /**
    * GLTF loader product of the fox
    * @private
@@ -148,5 +149,9 @@ export class Fox implements IUpdatable {
    */
   update(): void {
     this.animationHolder.mixer.update(this.timeHandler.getDeltaTime() * 0.001);
+  }
+
+  destroy():void {
+    this.scene.remove(this.modelGroup)
   }
 }
