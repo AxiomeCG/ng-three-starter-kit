@@ -125,7 +125,6 @@ export class Environment {
    * Sets up the environment map of the scene and applies it to the supported materials of the scene.
    */
   configureEnvironmentMap() {
-
     this.environmentMap.texture.encoding = sRGBEncoding;
 
     this.scene.environment = this.environmentMap.texture;
@@ -141,7 +140,6 @@ export class Environment {
           .onChange(() => this.environmentMap.updateMaterials());
     }
   }
-
 
   /**
    * Checks if there are the correct properties on the material for setting the environment map and the environment map
