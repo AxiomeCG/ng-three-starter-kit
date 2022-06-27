@@ -1,5 +1,5 @@
 import { IResizable } from '../interface/IResizable';
-import { WindowSize } from '../handler/size/IWindowSize';
+import { ISize } from '../handler/size/ISize';
 import { PerspectiveCamera } from 'three';
 import { Scene } from 'three/src/scenes/Scene';
 
@@ -17,7 +17,7 @@ export class CameraHolder implements IResizable {
    * @param scene ThreeJS scene to add the camera to it.
    * @param initialSize Initial viewport size to set up the aspect ratio.
    */
-  constructor(private readonly scene: Scene, initialSize: WindowSize) {
+  constructor(private readonly scene: Scene, initialSize: ISize) {
     this.instance = new PerspectiveCamera(
       35,
       initialSize.width / initialSize.height,
@@ -32,7 +32,7 @@ export class CameraHolder implements IResizable {
    * Change the camera properties to follow the viewport size changes.
    * @param size New size to consider for the calculations
    */
-  resize(size: WindowSize): void {
+  resize(size: ISize): void {
     this.instance.aspect = size.width / size.height;
     this.instance.updateProjectionMatrix();
   }

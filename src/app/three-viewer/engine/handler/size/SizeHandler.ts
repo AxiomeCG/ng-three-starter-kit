@@ -1,11 +1,11 @@
 import { EventEmitter } from '@angular/core';
-import { WindowSize } from './IWindowSize';
+import { ISize } from './ISize';
 import { Observable } from 'rxjs';
 import { IListenable } from '../../interface/IListenable';
 
-export class SizeHandler implements IListenable<WindowSize> {
+export class SizeHandler implements IListenable<ISize> {
 
-  private readonly eventEmitter = new EventEmitter<WindowSize>();
+  private readonly eventEmitter = new EventEmitter<ISize>();
 
   constructor() {
     window.addEventListener('resize', () => {
@@ -29,7 +29,7 @@ export class SizeHandler implements IListenable<WindowSize> {
     return Math.min(window.devicePixelRatio, 2);
   }
 
-  getSize(): WindowSize {
+  getSize(): ISize {
     return {
       width: this.getWidth(),
       height: this.getHeight(),
@@ -37,7 +37,7 @@ export class SizeHandler implements IListenable<WindowSize> {
     };
   }
 
-  listen(): Observable<WindowSize> {
+  listen(): Observable<ISize> {
     return this.eventEmitter.asObservable();
   }
 }

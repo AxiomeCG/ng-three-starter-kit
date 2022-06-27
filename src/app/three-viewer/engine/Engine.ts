@@ -2,7 +2,7 @@ import { IDestroyable } from './interface/IDestroyable';
 import { RendererHolder } from './holder/RendererHolder';
 import { IResizable } from './interface/IResizable';
 import { IUpdatable } from './interface/IUpdatable';
-import { WindowSize } from './handler/size/IWindowSize';
+import { ISize } from './handler/size/ISize';
 import { Mesh, Scene } from 'three';
 import { ControlsHolder } from './holder/ControlsHolder';
 import { CameraHolder } from './holder/CameraHolder';
@@ -117,7 +117,7 @@ export class Engine implements IResizable, IUpdatable, IDestroyable {
    * Resizes all the elements contained in the list of updatable objects
    * @param size New information about the size and the new pixel ratio
    */
-  resize(size: WindowSize): void {
+  resize(size: ISize): void {
     this.resizableList.forEach((resizable) => resizable.resize(size));
   }
 

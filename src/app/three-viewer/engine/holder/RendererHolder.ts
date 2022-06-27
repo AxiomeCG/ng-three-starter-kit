@@ -1,7 +1,7 @@
 import { WebGLRenderer } from 'three/src/renderers/WebGLRenderer';
 import { IResizable } from '../interface/IResizable';
 import { PCFShadowMap, ReinhardToneMapping, sRGBEncoding } from 'three';
-import { WindowSize } from '../handler/size/IWindowSize';
+import { ISize } from '../handler/size/ISize';
 import { IUpdatable } from '../interface/IUpdatable';
 import { Scene } from 'three/src/scenes/Scene';
 import { Camera } from 'three/src/cameras/Camera';
@@ -24,7 +24,7 @@ export class RendererHolder implements IResizable, IUpdatable, IDestroyable {
    * @param canvas HTML canvas element of the viewer
    * @param initialSize Initial size of the viewport
    */
-  constructor(private readonly scene: Scene, private readonly camera: Camera, private readonly canvas: HTMLCanvasElement, initialSize: WindowSize) {
+  constructor(private readonly scene: Scene, private readonly camera: Camera, private readonly canvas: HTMLCanvasElement, initialSize: ISize) {
     this.instance = new WebGLRenderer(
       {
         canvas: canvas,
@@ -51,7 +51,7 @@ export class RendererHolder implements IResizable, IUpdatable, IDestroyable {
    * Resizes the renderer to the new size of the viewport. Sets also the new pixel ratio.
    * @param size New size information of the viewport
    */
-  resize(size: WindowSize) {
+  resize(size: ISize) {
     this.instance.setSize(size.width, size.height);
     this.instance.setPixelRatio(size.pixelRatio);
   }
