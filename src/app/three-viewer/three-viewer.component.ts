@@ -23,6 +23,11 @@ export class ThreeViewerComponent implements OnInit, OnDestroy {
    */
   private engine: Engine | undefined;
 
+  /**
+   * Constructor
+   * @param timeHandlerService Service that handles the animation loop and the time of the 3D experience engine
+   * @param screenSizeHandlerService Service that handles the screen resize for the 3D experience engine
+   */
   constructor(private readonly timeHandlerService: TimeHandlerService,
               private readonly screenSizeHandlerService: ScreenSizeHandlerService) {}
 
@@ -37,11 +42,9 @@ export class ThreeViewerComponent implements OnInit, OnDestroy {
     this.engine = new Engine(this.canvasRef.nativeElement, this.screenSizeHandlerService.getSize());
 
     this.timeHandlerService.setConsumer((experienceTime) => this.engine?.update(experienceTime));
-    this.timeHandlerService.tick();
+    this.timeHandlerService.tick(); //First impulsion of the tick loop
 
     this.screenSizeHandlerService.setConsumer((size) => this.engine?.resize(size));
-
-
   }
 
   /**
