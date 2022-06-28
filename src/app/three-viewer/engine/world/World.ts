@@ -54,9 +54,8 @@ export class World implements IUpdatable, IDestroyable {
                               console.log('Resources are ready');
                               this.floor = new Floor(scene, this.resourceLoader);
                               this.fox = new Fox(scene,
-                                this.resourceLoader,
-                                debugGUI);
-                              this.environment = new Environment(scene, this.resourceLoader, debugGUI);
+                                this.resourceLoader);
+                              this.environment = new Environment(scene, this.resourceLoader);
                             });
   }
 

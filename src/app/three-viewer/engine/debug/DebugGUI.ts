@@ -1,35 +1,43 @@
 import GUI from 'lil-gui';
-import { IDestroyable } from '../interface/IDestroyable';
 
 /**
  * Debug tool panel from lil-gui to tweak the project
  */
-export class DebugGUI implements IDestroyable {
+export class DebugGUI {
   /**
-   * lil-gui UI instance
+   * lil-gui UI singleton instance
    */
-  readonly ui: GUI | undefined;
-  /**
-   * Status of the GUI based on the URL of the project (add #debug and reload to show the panel)
-   * @private
-   */
-  private readonly active = window.location.hash === '#debug';
+  private static instance: GUI | undefined;
 
   /**
-   * Constructor
+   * Instantiates the UI if none is found, and returns it.
+   * @returns A singleton instance of the lil-gui library
    */
-  constructor() {
-    if (this.active) {
-      this.ui = new GUI();
+  static getUI(): GUI | undefined {
+    if (window.location.hash !== '#debug') {
+      return undefined;
     }
+    if (!DebugGUI.instance) {
+      DebugGUI.instance = new GUI();
+    }
+    return DebugGUI.instance;
+  }
+
+  /**
+   * Gives the state of the DebugGUI, which is by default, accessible only if in the URL of the application there is
+   * "#debug"
+   * @returns true if the DebugGUI is active, else false
+   */
+  static isActive(): boolean {
+    return this.instance!! && window.location.hash !== '#debug';
   }
 
   /**
    * Destroys the instance of lil-gui UI
    */
-  destroy(): void {
-    if (this.active && this.ui) {
-      this.ui.destroy();
+  static destroy(): void {
+    if (this.instance) {
+      this.instance.destroy();
     }
   }
 }
