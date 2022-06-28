@@ -64,7 +64,7 @@ export class Environment implements IDestroyable {
               private readonly resourceLoader: ResourceLoader,
   ) {
 
-    const debugUI = DebugGUI.getUI()
+    const debugUI = DebugGUI.getUI();
     if (debugUI) {
       this.debugFolder = debugUI.addFolder('environment');
     }

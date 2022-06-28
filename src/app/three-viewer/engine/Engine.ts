@@ -129,7 +129,7 @@ export class Engine implements IResizable, IUpdatable, IDestroyable {
     });
     this.destroyableList.forEach((destroyable) => destroyable.destroy());
 
-    DebugGUI.destroy()
+    DebugGUI.destroy();
   }
 
 }
