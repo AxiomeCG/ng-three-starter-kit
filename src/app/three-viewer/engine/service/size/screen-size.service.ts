@@ -16,7 +16,6 @@ export class ScreenSizeService {
   constructor(private readonly ngZone: NgZone) {
     this.ngZone.runOutsideAngular(() => {
       window.addEventListener('resize', () => {
-        console.log('resize');
         this.engineConsumer(ScreenSizeService.getSize());
       });
     });

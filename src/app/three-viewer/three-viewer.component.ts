@@ -2,6 +2,7 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/co
 import { Engine } from './engine/Engine';
 import { TimeService } from './engine/service/time/time.service';
 import { ScreenSizeService } from './engine/service/size/screen-size.service';
+import { PointerService } from './engine/service/pointer/pointer.service';
 
 /**
  * ThreeJS viewer containing the canvas to display the WebGL experience and the engine that runs the whole.
@@ -27,9 +28,11 @@ export class ThreeViewerComponent implements OnInit, OnDestroy {
    * Constructor
    * @param timeService Service that handles the animation loop and the time of the 3D experience engine
    * @param screenSizeService Service that handles the screen resize for the 3D experience engine
+   * @param pointerService Service that handles the pointer events
    */
   constructor(private readonly timeService: TimeService,
-              private readonly screenSizeService: ScreenSizeService) {}
+              private readonly screenSizeService: ScreenSizeService,
+              private readonly pointerService: PointerService) {}
 
   /**
    * Bootstraps the 3D engine
@@ -45,6 +48,8 @@ export class ThreeViewerComponent implements OnInit, OnDestroy {
     this.timeService.tick(); //First impulsion of the tick loop
 
     this.screenSizeService.setConsumer((size) => this.engine?.resize(size));
+
+    this.pointerService.setConsumer((pointerEvent) => this.engine?.reactToPointer(pointerEvent));
   }
 
   /**
