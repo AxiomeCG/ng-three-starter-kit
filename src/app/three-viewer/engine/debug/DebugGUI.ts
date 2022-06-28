@@ -29,7 +29,7 @@ export class DebugGUI {
    * @returns true if the DebugGUI is active, else false
    */
   static isActive(): boolean {
-    return this.instance!! && window.location.hash !== '#debug';
+    return !!this.instance && window.location.hash !== '#debug';
   }
 
   /**
