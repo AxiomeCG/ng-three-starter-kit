@@ -4,7 +4,7 @@
 ![Threejs](https://img.shields.io/badge/threejs-black?style=for-the-badge&logo=three.js&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 
-[![Documentation](https://exomus.github.io/docs/ng-three-starter-kit/v0.2.0/images/coverage-badge-documentation.svg)](https://exomus.github.io/docs/ng-three-starter-kit/v0.2.0/)
+[![Documentation](https://exomus.github.io/docs/ng-three-starter-kit/v0.3.0/images/coverage-badge-documentation.svg)](https://exomus.github.io/docs/ng-three-starter-kit/v0.3.0/)
 
 [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-black.svg)](https://sonarcloud.io/summary/new_code?id=Exomus_ng-three-starter-kit)
 
@@ -42,8 +42,13 @@ I reworked the whole thing, so that it would fit in an Angular 14 project, with 
     - Texture Loader: You should see the floor with both color and normal textures.
     - Cube Texture Loader: You should also see that the environment map is loaded and applied on the scene.
 - Architecture of the project in many folders to keep it organized
-- Executes the animation loop and the resize outside the NgZone to avoid performance issues due to Angular's Change
-  detection
+- Debug UI integrated (equivalent to dat-gui) and easily accessible due to static singleton pattern
+- Util service
+    - Executes the animation loop and the resize outside the NgZone to avoid performance issues due to Angular's Change
+      detection
+    - Information obtainable easily without painful constructor argument everywhere. (static method)
+    - Provides a PointerService to handle pointermove events and executes the pointermove callback of the engine outside
+      the NgZone
 
 # Documentation
 
@@ -90,6 +95,7 @@ Util to handle the common tick loop.
 It executes the consumer callback of the engine while providing it the time information of the current new frame.
 
 ## Loader
+
 ### ResourceLoader
 
 Util to handle GLTF models, textures, and cube textures.

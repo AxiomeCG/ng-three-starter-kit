@@ -1,6 +1,9 @@
 import { Injectable, NgZone } from '@angular/core';
 import { Consumer } from '../type/Consumer';
 
+/**
+ * Service that handles the pointermove event outside of Angular and executes the engine callback
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -10,7 +13,6 @@ export class PointerService {
    * Constructor
    * Listens on the pointermove event and executes the callback of the engine (if set) outside of Angular to prevent
    * Change Detection triggering
-   * @param ngZone
    */
   constructor(private readonly ngZone: NgZone) {
     this.ngZone.runOutsideAngular(
