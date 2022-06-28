@@ -90,8 +90,7 @@ export class Engine implements IResizable, IUpdatable, IDestroyable {
 
     this.destroyableList = [
       this.controlsHolder,
-      this.rendererHolder,
-      this.debugGUI
+      this.rendererHolder
     ];
   }
 
@@ -129,6 +128,8 @@ export class Engine implements IResizable, IUpdatable, IDestroyable {
       }
     });
     this.destroyableList.forEach((destroyable) => destroyable.destroy());
+
+    DebugGUI.destroy();
   }
 
 }

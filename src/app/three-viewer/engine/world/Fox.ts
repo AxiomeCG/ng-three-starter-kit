@@ -74,14 +74,12 @@ export class Fox implements IUpdatable, IDestroyable {
    * Constructor
    * @param scene Scene to add the fox
    * @param resourceLoader Resource loader that has loaded the GLTF file of the fox
-   * @param debugGUI Tool to tweak the fox animations
    */
   constructor(private readonly scene: Scene,
-              private readonly resourceLoader: ResourceLoader,
-              private readonly debugGUI: DebugGUI) {
-
-    if (this.debugGUI.ui) {
-      this.debugFolder = this.debugGUI.ui.addFolder('fox');
+              private readonly resourceLoader: ResourceLoader) {
+    const debugUI = DebugGUI.getUI();
+    if (debugUI) {
+      this.debugFolder = debugUI.addFolder('fox');
     }
 
     this.gltf = this.resourceLoader.items.get('foxModel') as GLTF;
@@ -123,7 +121,7 @@ export class Fox implements IUpdatable, IDestroyable {
     this.animationHolder.actions['current'] = this.animationHolder.actions['idle'];
     this.animationHolder.actions['current'].play();
 
-    if (this.debugGUI.ui) {
+    if (this.debugFolder) {
       const debugObject = {
         playIdle: () => {
           this.animationHolder.play('idle');
@@ -136,9 +134,9 @@ export class Fox implements IUpdatable, IDestroyable {
         }
       };
 
-      this.debugFolder?.add(debugObject, 'playIdle');
-      this.debugFolder?.add(debugObject, 'playWalking');
-      this.debugFolder?.add(debugObject, 'playRunning');
+      this.debugFolder.add(debugObject, 'playIdle');
+      this.debugFolder.add(debugObject, 'playWalking');
+      this.debugFolder.add(debugObject, 'playRunning');
     }
   }
 

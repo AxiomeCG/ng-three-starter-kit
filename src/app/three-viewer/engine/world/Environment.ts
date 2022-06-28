@@ -59,14 +59,14 @@ export class Environment implements IDestroyable {
    * Constructor
    * @param scene ThreeJS scene to add the lights
    * @param resourceLoader Resources loaded in the project
-   * @param debugGUI
    */
   constructor(private readonly scene: Scene,
               private readonly resourceLoader: ResourceLoader,
-              private readonly debugGUI: DebugGUI
   ) {
-    if (this.debugGUI.ui) {
-      this.debugFolder = this.debugGUI.ui.addFolder('environment');
+
+    const debugUI = DebugGUI.getUI();
+    if (debugUI) {
+      this.debugFolder = debugUI.addFolder('environment');
     }
     this.sunLight = new DirectionalLight('#ffffff', 3);
     this.configureSunLight();
@@ -147,8 +147,8 @@ export class Environment implements IDestroyable {
 
     this.environmentMap.updateMaterials();
 
-    if (this.debugGUI.ui) {
-      this.debugFolder?.add(this.environmentMap, 'intensity')
+    if (this.debugFolder) {
+      this.debugFolder.add(this.environmentMap, 'intensity')
           .name('envMapIntensity')
           .min(0)
           .max(4)
