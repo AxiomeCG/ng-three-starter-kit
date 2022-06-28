@@ -39,7 +39,7 @@ export class ThreeViewerComponent implements OnInit, OnDestroy {
     if (!this.canvasRef) {
       throw new Error('Canvas should be defined to bootstrap the WebGL Engine');
     }
-    this.engine = new Engine(this.canvasRef.nativeElement, this.screenSizeService.getSize());
+    this.engine = new Engine(this.canvasRef.nativeElement);
 
     this.timeService.setConsumer((experienceTime) => this.engine?.update(experienceTime));
     this.timeService.tick(); //First impulsion of the tick loop

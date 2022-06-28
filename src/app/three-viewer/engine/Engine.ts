@@ -69,12 +69,10 @@ export class Engine implements IResizable, IUpdatable, IDestroyable {
   /**
    * Constructor
    * @param canvas Reference to the canvas of the parent viewer
-   * @param initialSize Initial size of the experience
    */
-  constructor(canvas: HTMLCanvasElement, initialSize: ISize
-  ) {
-    this.cameraHolder = new CameraHolder(this.scene, initialSize);
-    this.rendererHolder = new RendererHolder(this.scene, this.cameraHolder.instance, canvas, initialSize);
+  constructor(canvas: HTMLCanvasElement) {
+    this.cameraHolder = new CameraHolder(this.scene);
+    this.rendererHolder = new RendererHolder(this.scene, this.cameraHolder.instance, canvas);
     this.controlsHolder = new ControlsHolder(this.cameraHolder.instance, canvas);
 
     this.updatableList = [

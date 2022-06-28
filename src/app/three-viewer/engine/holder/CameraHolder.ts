@@ -2,6 +2,7 @@ import { IResizable } from '../interface/IResizable';
 import { ISize } from '../service/size/ISize';
 import { PerspectiveCamera } from 'three';
 import { Scene } from 'three/src/scenes/Scene';
+import { ScreenSizeService } from '../service/size/screen-size.service';
 
 /**
  * Holder of the perspective camera chosen for the scene.
@@ -15,9 +16,9 @@ export class CameraHolder implements IResizable {
   /**
    * Constructor
    * @param scene ThreeJS scene to add the camera to it.
-   * @param initialSize Initial viewport size to set up the aspect ratio.
    */
-  constructor(private readonly scene: Scene, initialSize: ISize) {
+  constructor(private readonly scene: Scene) {
+    const initialSize = ScreenSizeService.getSize();
     this.instance = new PerspectiveCamera(
       35,
       initialSize.width / initialSize.height,

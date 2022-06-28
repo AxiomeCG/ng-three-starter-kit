@@ -1,5 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
 import { ISize } from './ISize';
+import { Consumer } from '../type/Consumer';
 
 /**
  * Service that handles the size of the screen (viewport) and it listens on the resize events outside of Angular
@@ -16,7 +17,7 @@ export class ScreenSizeService {
     this.ngZone.runOutsideAngular(() => {
       window.addEventListener('resize', () => {
         console.log('resize');
-        this.engineConsumer(this.getSize());
+        this.engineConsumer(ScreenSizeService.getSize());
       });
     });
   }
@@ -24,32 +25,32 @@ export class ScreenSizeService {
   /**
    * Returns the current width of the viewport.
    */
-  getWidth(): number {
+  static getWidth(): number {
     return window.innerWidth;
   }
 
   /**
    * Returns the current height of the viewport.
    */
-  getHeight(): number {
+  static getHeight(): number {
     return window.innerHeight;
   }
 
   /**
    * Returns the current pixel ratio to apply. Can be either 1 or 2 (above 2 would be overkill)
    */
-  getPixelRatio(): number {
+  static getPixelRatio(): number {
     return Math.min(window.devicePixelRatio, 2);
   }
 
   /**
    * Returns an information bundle about the viewport size
    */
-  getSize(): ISize {
+  static getSize(): ISize {
     return {
-      width: this.getWidth(),
-      height: this.getHeight(),
-      pixelRatio: this.getPixelRatio(),
+      width: ScreenSizeService.getWidth(),
+      height: ScreenSizeService.getHeight(),
+      pixelRatio: ScreenSizeService.getPixelRatio(),
     };
   }
 
@@ -65,5 +66,5 @@ export class ScreenSizeService {
   /**
    * Slot to keep track of the engine consumer to execute out of the NgZone on resize
    */
-  private engineConsumer: (size: ISize) => void = () => {};
+  private engineConsumer: Consumer<ISize> = () => {};
 }
