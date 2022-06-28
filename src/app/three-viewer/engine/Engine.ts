@@ -110,7 +110,8 @@ export class Engine implements IResizable, IUpdatable, IDestroyable, IPointerSen
   }
 
   /**
-   * Reacts to the pointer event by passing it down to the children objects that implements the {@link IPointerSensible} interface.
+   * Reacts to the pointer event by passing it down to the children objects that implements the {@link
+   * IPointerSensible} interface.
    * @param pointerEvent Pointer move event
    */
   reactToPointer(pointerEvent: PointerEvent): void {

@@ -7,11 +7,6 @@ import { Consumer } from '../type/Consumer';
 export class PointerService {
 
   /**
-   * Slot to keep track of the engine consumer to execute out of the NgZone on pointermove
-   */
-  private engineConsumer: Consumer<PointerEvent> = () => {};
-
-  /**
    * Constructor
    * Listens on the pointermove event and executes the callback of the engine (if set) outside of Angular to prevent
    * Change Detection triggering
@@ -34,4 +29,9 @@ export class PointerService {
   setConsumer(consumer: Consumer<PointerEvent>) {
     this.engineConsumer = consumer;
   }
+
+  /**
+   * Slot to keep track of the engine consumer to execute out of the NgZone on pointermove
+   */
+  private engineConsumer: Consumer<PointerEvent> = () => {};
 }
