@@ -9,13 +9,14 @@ import { CameraHolder } from './holder/CameraHolder';
 import { World } from './world/World';
 import { DebugGUI } from './debug/DebugGUI';
 import { IExperienceTime } from './service/time/IExperienceTime';
+import { IPointerSensible } from './interface/IPointerSensible';
 
 /**
  * Core element of the viewer.
  * It orchestrates the instantiation of the core ThreeJS ecosystem's components (scene,
  * renderer, ...).
  */
-export class Engine implements IResizable, IUpdatable, IDestroyable {
+export class Engine implements IResizable, IUpdatable, IDestroyable, IPointerSensible {
   /**
    * Instance of the lil-gui panel to tweak your elements.
    * @private
@@ -107,6 +108,16 @@ export class Engine implements IResizable, IUpdatable, IDestroyable {
   update(experienceTime: IExperienceTime): void {
     this.updatableList.forEach((updatable) => updatable.update(experienceTime));
   }
+
+  /**
+   * Reacts to the pointer event by passing it down to the children objects that implements the {@link
+   * IPointerSensible} interface.
+   * @param pointerEvent Pointer move event
+   */
+  reactToPointer(pointerEvent: PointerEvent): void {
+    // Add objects sensible to the pointer (example: the camera)
+  }
+
 
   /**
    * Destroys all the destroyable elements of the corresponding list and disposes
