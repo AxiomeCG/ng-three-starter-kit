@@ -59,7 +59,7 @@ export class ScreenSizeService {
    * pixel ratio
    * @param consumer Callback that needs to be executed outside the NgZone to avoid heavy change detection processes.
    */
-  setConsumer(consumer: (size: ISize) => void) {
+  setConsumer(consumer: Consumer<ISize>) {
     this.engineConsumer = consumer;
   }
 
