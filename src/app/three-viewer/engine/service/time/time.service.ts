@@ -1,5 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
 import { IExperienceTime } from './IExperienceTime';
+import { Consumer } from '../type/Consumer';
 
 
 /**
@@ -56,13 +57,13 @@ export class TimeService {
    * Sets the consumer that will be used by the engine to determine its update behaviour based on the new time bundle
    * @param consumer Callback that needs to be executed outside the NgZone to avoid heavy change detection processes.
    */
-  setConsumer(consumer: (experienceTime: IExperienceTime) => void): void {
+  setConsumer(consumer: Consumer<IExperienceTime>): void {
     this.engineConsumer = consumer;
   }
 
   /**
    * Slot to keep track of the engine consumer to execute out of the NgZone on tick
    */
-  private engineConsumer: (experienceTime: IExperienceTime) => void = () => {};
+  private engineConsumer: Consumer<IExperienceTime> = () => {};
 
 }

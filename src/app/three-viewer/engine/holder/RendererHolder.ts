@@ -6,6 +6,7 @@ import { IUpdatable } from '../interface/IUpdatable';
 import { Scene } from 'three/src/scenes/Scene';
 import { Camera } from 'three/src/cameras/Camera';
 import { IDestroyable } from '../interface/IDestroyable';
+import { ScreenSizeService } from '../service/size/screen-size.service';
 
 /**
  * Holder that sets up the WebGL Renderer for the 3D scene.
@@ -22,9 +23,11 @@ export class RendererHolder implements IResizable, IUpdatable, IDestroyable {
    * @param scene ThreeJS scene to render
    * @param camera ThreeJS camera used to render the scene
    * @param canvas HTML canvas element of the viewer
-   * @param initialSize Initial size of the viewport
    */
-  constructor(private readonly scene: Scene, private readonly camera: Camera, private readonly canvas: HTMLCanvasElement, initialSize: ISize) {
+  constructor(private readonly scene: Scene,
+              private readonly camera: Camera,
+              private readonly canvas: HTMLCanvasElement) {
+    const initialSize = ScreenSizeService.getSize();
     this.instance = new WebGLRenderer(
       {
         canvas: canvas,
