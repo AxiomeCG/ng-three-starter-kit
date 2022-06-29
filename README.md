@@ -1,6 +1,6 @@
 <div align="center">
 	<br>
-    <img src="trivia/NgThreeStarterKit.png" width="200" height="200">
+    <img src="trivia/ng-three-starter-kit-logo.png" width="200" height="200">
 	<h1>ng-three-starter-kit</h1>
 	<p>
 		<b>An Angular 14 template for your ThreeJS experiences</b>
