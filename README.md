@@ -1,28 +1,110 @@
-# ng-three-starter-kit
-
-![Angular](https://img.shields.io/badge/angular-%23DD0031.svg?style=for-the-badge&logo=angular&logoColor=white)
-![Threejs](https://img.shields.io/badge/threejs-black?style=for-the-badge&logo=three.js&logoColor=white)
-![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
-
-[![Documentation](https://exomus.github.io/docs/ng-three-starter-kit/v0.3.0/images/coverage-badge-documentation.svg)](https://exomus.github.io/docs/ng-three-starter-kit/v0.3.0/)
-
-[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-black.svg)](https://sonarcloud.io/summary/new_code?id=Exomus_ng-three-starter-kit)
-
-[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Exomus_ng-three-starter-kit&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=Exomus_ng-three-starter-kit)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Exomus_ng-three-starter-kit&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=Exomus_ng-three-starter-kit)
-[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=Exomus_ng-three-starter-kit&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=Exomus_ng-three-starter-kit)
-[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=Exomus_ng-three-starter-kit&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=Exomus_ng-three-starter-kit)
-[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=Exomus_ng-three-starter-kit&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=Exomus_ng-three-starter-kit)
-[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=Exomus_ng-three-starter-kit&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=Exomus_ng-three-starter-kit)
-[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=Exomus_ng-three-starter-kit&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=Exomus_ng-three-starter-kit)
-[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=Exomus_ng-three-starter-kit&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=Exomus_ng-three-starter-kit)
-[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Exomus_ng-three-starter-kit&metric=bugs)](https://sonarcloud.io/summary/new_code?id=Exomus_ng-three-starter-kit)
+<div align="center">
+	<br>
+    <img src="trivia/NgThreeStarterKit.png" width="200" height="200">
+	<h1>ng-three-starter-kit</h1>
+	<p>
+		<b>An Angular 14 template for your ThreeJS experiences</b>
+	</p>
+    <p align="center">
+        <a src="https://sonarcloud.io/summary/new_code?id=Exomus_ng-three-starter-kit" >
+            <img src="https://sonarcloud.io/api/project_badges/measure?project=Exomus_ng-three-starter-kit&metric=security_rating" alt="SonarCloud Security Badge metric"/>
+        </a>
+        <a src="https://sonarcloud.io/summary/new_code?id=Exomus_ng-three-starter-kit" >
+            <img src="https://sonarcloud.io/api/project_badges/measure?project=Exomus_ng-three-starter-kit&metric=sqale_rating" alt="SonarCloud Maintainability Badge metric"/>
+        </a>
+        <a src="https://sonarcloud.io/summary/new_code?id=Exomus_ng-three-starter-kit" >
+            <img src="https://sonarcloud.io/api/project_badges/measure?project=Exomus_ng-three-starter-kit&metric=code_smells" alt="SonarCloud Code Smells Badge metric"/>
+        </a>
+        <a src="https://sonarcloud.io/summary/new_code?id=Exomus_ng-three-starter-kit" >
+            <img src="https://sonarcloud.io/api/project_badges/measure?project=Exomus_ng-three-starter-kit&metric=ncloc" alt="SonarCloud Number  Badge metric"/>
+        </a>
+        <a src="https://sonarcloud.io/summary/new_code?id=Exomus_ng-three-starter-kit" >
+            <img src="https://sonarcloud.io/api/project_badges/measure?project=Exomus_ng-three-starter-kit&metric=sqale_index"/>
+        </a> 
+        <a src="https://sonarcloud.io/summary/new_code?id=Exomus_ng-three-starter-kit" >
+            <img src="https://sonarcloud.io/api/project_badges/measure?project=Exomus_ng-three-starter-kit&metric=reliability_rating"/>
+        </a>
+        <a src="https://sonarcloud.io/summary/new_code?id=Exomus_ng-three-starter-kit" >
+            <img src="https://sonarcloud.io/api/project_badges/measure?project=Exomus_ng-three-starter-kit&metric=duplicated_lines_density"/>
+        </a>
+        <a src="https://sonarcloud.io/summary/new_code?id=Exomus_ng-three-starter-kit" >
+            <img src="https://sonarcloud.io/api/project_badges/measure?project=Exomus_ng-three-starter-kit&metric=vulnerabilities"/>
+        </a>
+        <a src="https://sonarcloud.io/summary/new_code?id=Exomus_ng-three-starter-kit" >
+            <img src="https://sonarcloud.io/api/project_badges/measure?project=Exomus_ng-three-starter-kit&metric=bugs"/>
+        </a>
+        <a src="https://exomus.github.io/docs/ng-three-starter-kit/v0.3.0/">
+            <img src="https://exomus.github.io/docs/ng-three-starter-kit/v0.3.0/images/coverage-badge-documentation.svg">
+        </a>
+    </p>
+</div>
+<br>
+<p align="center">
+    <a src="https://exomus.github.io/">➡️ <b>Documentation</b> ⬅️</a>
+</p>
 
 # Stack
+
+<p>
+    <img src="https://img.shields.io/badge/angular-%23DD0031.svg?style=for-the-badge&logo=angular&logoColor=white" alt="Angular Badge">
+    <img src="https://img.shields.io/badge/threejs-black?style=for-the-badge&logo=three.js&logoColor=white" alt="ThreeJS Badge">
+    <img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" alt="Typescript Badge">
+    <img src="https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white" alt="SASS Badge">
+</p>
 
 - Angular v14
 - Threejs (r141)
 - @types/three (r141)
+
+# Quick Start
+
+Once your repository cloned:
+
+## Serve the application
+
+```shell
+npm start
+```
+
+<p align="center">or</p>
+
+```shell
+ng serve
+```
+
+By default, you can access it through: http://localhost:4200/
+
+### What you should see
+
+<p align="center">
+    <img src="trivia/serve.gif" width="80%" alt="Result of the ng serve: A glTF fox model on a floor. The camera is moving around it.">
+</p>
+
+## Build the application
+
+```shell
+npm run build
+```
+
+<p align="center">or</p>
+
+```shell
+ng build
+```
+
+A `dist` folder is generated that can be statically hosted.
+
+## Debug and tweak your 3D scene with lil-gui
+
+By default, you can add `#debug` in the URL to access the debug panel, useful to tweak your scene.
+
+Be sure to give **a reload** if you cannot see it.
+
+### What you can expect to see
+
+<p align="center">
+    <img src="trivia/debug.gif" width="80%" alt="Demonstration of adding the #debug to the URL and force the reload of the page. The Debug GUI is now on screen.">
+</p>
 
 # Special Thanks
 
@@ -49,92 +131,6 @@ I reworked the whole thing, so that it would fit in an Angular 14 project, with 
     - Information obtainable easily without painful constructor argument everywhere. (static method)
     - Provides a PointerService to handle pointermove events and executes the pointermove callback of the engine outside
       the NgZone
-
-# Documentation
-
-## Engine
-
-Heart of the viewer.
-It orchestrates the instantiation of the core ThreeJS ecosystem's components (scene, renderer, ...).
-It is listening to some handlers to communicate the behaviour to follow to its "children".
-
-## Holders
-
-A holder is a class wrapping a ThreeJS instance. It contains the instantiation of the ThreeJS component with the
-settings considered for.
-
-### Camera Holder
-
-Holder of the perspective camera chosen for the template. Can be easily switched to other camera types.
-
-### Control Holder
-
-Holder for the OrbitControls chosen for the template. Can be switched to other types. Damping is enabled.
-
-### Renderer Holder
-
-- Physically correct lights enabled
-- Output encoding to sRGB
-- Reinhard tone mapping ON
-- Shadow map (PCF Shadow Map) enabled
-- The screen resize and the pixel ratio is handled
-
-## Services
-
-These services do the heavy lifting of the NgZone management that preserves the performance of the Angular application.
-
-### ScreenSizeService
-
-Util to handle the screen size.
-Updates on viewport resizing.
-It executes the consumer callback of the engine while providing it the new size and pixel ratio
-
-### TimeService
-
-Util to handle the common tick loop.
-It executes the consumer callback of the engine while providing it the time information of the current new frame.
-
-## Loader
-
-### ResourceLoader
-
-Util to handle GLTF models, textures, and cube textures.
-(It is extensible as you wish)
-Loads all the content of the `sources-list.ts`.
-It uses a Loading manager (different from the default one).
-
-## Interfaces
-
-Useful contracts to process your objects in mass (via a for loop for instance),
-depending on the behaviour you want for them.
-
-### IDestroyable
-
-Contract that marks the class that implements it as destroyable (need to dispose of elements (geometries,
-material...)). Add your objects in your Engine "destroyableList" and a loop will take care to call each `destroy()`
-method when the `ngOnDestroy()` is triggered by the viewer component.
-
-### IListenable
-
-Contract that marks the class that implements it as listenable.
-The listen method returns an Observable.
-Mostly used for the handler to notify other objects via their EventEmitter.
-
-### IResizable
-
-Contract that marks the class that implements it as resizable.
-Add your objects in your Engine "resizableList", this will be added to the callback that is called by the
-ScreenSizeService
-
-### IUpdatable
-
-Contract that marks the class that implements it as updatable.
-Add your objects in your Engine "updatableList" and a loop will take care to call each `update()`
-when the TimeHandler loop notifies the Engine of a new frame.
-
-## World
-
-Handles the floor, the fox, the environment.
 
 # Incoming Features
 
@@ -172,4 +168,6 @@ It's, in my opinion, a more angular-friendly way of writing our code.
 
 # Twitter
 
-You can reach me on Twitter: [@axiom_3d](https://twitter.com/axiom_3d)
+You can reach me on Twitter:
+
+[![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?style=for-the-badge&logo=Twitter&logoColor=white)](https://twitter.com/axiom_3d)
