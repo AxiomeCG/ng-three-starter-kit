@@ -39,8 +39,7 @@
     </p>
 </div>
 <br>
-<p align="center">
-    <a src="https://exomus.github.io/">➡️ <b>Documentation</b> ⬅️</a>
+    
 </p>
 
 # Stack 🧰
@@ -57,6 +56,8 @@
 - @types/three (r141)
 
 # Quick Start 🏁
+
+➡️[ Documentation ](https://exomus.github.io/)⬅️
 
 ## How to use this template 🔧
 
