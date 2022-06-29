@@ -43,7 +43,7 @@
     <a src="https://exomus.github.io/">➡️ <b>Documentation</b> ⬅️</a>
 </p>
 
-# Stack
+# Stack 🧰
 
 <p>
     <img src="https://img.shields.io/badge/angular-%23DD0031.svg?style=for-the-badge&logo=angular&logoColor=white" alt="Angular Badge">
@@ -56,11 +56,23 @@
 - Threejs (r141)
 - @types/three (r141)
 
-# Quick Start
+# Quick Start 🏁
 
-Once your repository cloned:
+## How to use this template 🔧
 
-## Serve the application
+<p align="center">
+    <img src="trivia/use-template.gif" width="80%" alt="Demonstration about how to use this template in GitHub">
+</p>
+
+- Click on [***Use this template***](https://github.com/Exomus/ng-three-starter-kit/generate)
+- Enter the ✨*awesome*✨ name of your repository
+- Choose the visibility of the repo
+- Click on ***Create repository from template***
+- You are now the owner of a new Angular ThreeJS project. Congratulations !
+
+(You can clone your new repository with `git clone <name-of-your-repository>` in your Terminal)
+
+## Serve the application 👨‍💻
 
 ```shell
 npm start
@@ -80,7 +92,7 @@ By default, you can access it through: http://localhost:4200/
     <img src="trivia/serve.gif" width="80%" alt="Result of the ng serve: A glTF fox model on a floor. The camera is moving around it.">
 </p>
 
-## Build the application
+## Build the application 🏗️
 
 ```shell
 npm run build
@@ -94,7 +106,7 @@ ng build
 
 A `dist` folder is generated that can be statically hosted.
 
-## Debug and tweak your 3D scene with lil-gui
+## Debug and tweak your 3D scene with lil-gui 🐞
 
 By default, you can add `#debug` in the URL to access the debug panel, useful to tweak your scene.
 
@@ -106,7 +118,7 @@ Be sure to give **a reload** if you cannot see it.
     <img src="trivia/debug.gif" width="80%" alt="Demonstration of adding the #debug to the URL and force the reload of the page. The Debug GUI is now on screen.">
 </p>
 
-# Special Thanks
+# Special Thanks 💖
 
 Huge thanks to [Bruno Simon](https://twitter.com/bruno_simon) for all the inspiration and the lessons
 he provides kindly.
@@ -115,7 +127,7 @@ This project is highly inspired by the [Threejs Journey](https://threejs-journey
 
 I reworked the whole thing, so that it would fit in an Angular 14 project, with Typescript, obviously.
 
-# Features
+# Features 🛠️
 
 - Boilerplate code to set up the Threejs Scene, ready to use.
 - 3D Assets to test that the template is working for you with the loaders.
@@ -132,12 +144,12 @@ I reworked the whole thing, so that it would fit in an Angular 14 project, with 
     - Provides a PointerService to handle pointermove events and executes the pointermove callback of the engine outside
       the NgZone
 
-# Incoming Features
+# Incoming Features ⚙️
 
 - Jest integration for unit testing (over Karma/Jasmine)
 - Draco Compression option handling for the GLTF loader
 
-# Note
+# Notes 🗒️
 
 You don't need to use the "THREE" namespace in the project as usual.
 You can simply put the name of the type you want to use and put the right import.
@@ -166,7 +178,7 @@ const mesh = new Mesh(geometry, material);
 
 It's, in my opinion, a more angular-friendly way of writing our code.
 
-# Twitter
+# Twitter 🐦
 
 You can reach me on Twitter:
 
