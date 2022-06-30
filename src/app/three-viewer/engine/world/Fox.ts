@@ -32,12 +32,8 @@ class AnimationHolder {
    * @param name Name of the animation action to play. Should exist in the list of available actions.
    */
   play(name: string): void {
-    console.log('Play', name);
     const newAction = this.actions[name];
     const oldAction = this.actions['current'];
-
-    console.log(newAction);
-    console.log(oldAction);
     newAction.reset();
     newAction.play();
     newAction.crossFadeFrom(oldAction, 1, false);
