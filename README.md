@@ -52,7 +52,7 @@
 </p>
 
 - Angular v14
-- Threejs (r141)
+- Threejs (r142)
 - @types/three (r141)
 
 # Quick Start 🏁
