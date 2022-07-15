@@ -1,4 +1,4 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable, NgZone, OnDestroy, RendererFactory2 } from '@angular/core';
 import { ISize } from './ISize';
 import { Consumer } from '../type/Consumer';
 
@@ -8,16 +8,26 @@ import { Consumer } from '../type/Consumer';
 @Injectable({
   providedIn: 'root'
 })
-export class ScreenSizeService {
+export class ScreenSizeService implements OnDestroy {
+  private unlisten: Function | undefined;
+
   /**
    * Constructor
    * Listen to the resize outside of Angular to execute the Engine's consumer to avoid ChangeDetection triggers
    */
-  constructor(private readonly ngZone: NgZone) {
+  constructor(private readonly ngZone: NgZone, rendererFactory: RendererFactory2) {
     this.ngZone.runOutsideAngular(() => {
-      window.addEventListener('resize', () => {
-        this.engineConsumer(ScreenSizeService.getSize());
-      });
+
+      const renderer2 = rendererFactory.createRenderer(null, null);
+      this.ngZone.runOutsideAngular(
+        () => {
+          this.unlisten = renderer2.listen(window, 'resize', () => {
+            NgZone.assertNotInAngularZone();
+            this.engineConsumer(ScreenSizeService.getSize());
+          });
+        }
+      );
+
     });
   }
 
@@ -66,4 +76,10 @@ export class ScreenSizeService {
    * Slot to keep track of the engine consumer to execute out of the NgZone on resize
    */
   private engineConsumer: Consumer<ISize> = () => {};
+
+  ngOnDestroy(): void {
+    if (this.unlisten) {
+      this.unlisten();
+    }
+  }
 }
