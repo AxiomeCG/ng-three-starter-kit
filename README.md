@@ -33,8 +33,8 @@
         <a src="https://sonarcloud.io/summary/new_code?id=Exomus_ng-three-starter-kit" >
             <img src="https://sonarcloud.io/api/project_badges/measure?project=Exomus_ng-three-starter-kit&metric=bugs"/>
         </a>
-        <a src="https://exomus.github.io/docs/ng-three-starter-kit/v0.3.0/">
-            <img src="https://exomus.github.io/docs/ng-three-starter-kit/v0.3.0/images/coverage-badge-documentation.svg">
+        <a src="https://0xaxiome.github.io/docs/ng-three-starter-kit/v0.4.0/">
+            <img src="https://0xaxiome.github.io/docs/ng-three-starter-kit/v0.4.0/images/coverage-badge-documentation.svg">
         </a>
     </p>
 </div>
@@ -57,7 +57,7 @@
 
 # Quick Start 🏁
 
-➡️[ Documentation ](https://exomus.github.io/)⬅️
+➡️[ Documentation ](https://0xaxiome.github.io/)⬅️
 
 ## How to use this template 🔧
 
