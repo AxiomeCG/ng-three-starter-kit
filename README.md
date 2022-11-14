@@ -33,8 +33,8 @@
         <a src="https://sonarcloud.io/summary/new_code?id=Exomus_ng-three-starter-kit" >
             <img src="https://sonarcloud.io/api/project_badges/measure?project=Exomus_ng-three-starter-kit&metric=bugs"/>
         </a>
-        <a src="https://0xaxiome.github.io/docs/ng-three-starter-kit/v0.4.0/">
-            <img src="https://0xaxiome.github.io/docs/ng-three-starter-kit/v0.4.0/images/coverage-badge-documentation.svg">
+        <a src="https://0xaxiome.github.io/docs/ng-three-starter-kit/v0.5.0/">
+            <img src="https://0xaxiome.github.io/docs/ng-three-starter-kit/v0.5.0/images/coverage-badge-documentation.svg">
         </a>
     </p>
 </div>
@@ -52,8 +52,8 @@
 </p>
 
 - Angular v14
-- Threejs (r142)
-- @types/three (r141)
+- Threejs (r146)
+- @types/three (r146)
 
 # Quick Start 🏁
 
