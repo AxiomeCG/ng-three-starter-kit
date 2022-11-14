@@ -22,7 +22,6 @@ export class PointerService implements OnDestroy {
     this.ngZone.runOutsideAngular(
       () => {
         this.unlisten = renderer2.listen(window, 'pointermove', (pointerEvent) => {
-          console.log(pointerEvent);
           NgZone.assertNotInAngularZone();
           this.engineConsumer(pointerEvent);
         });
